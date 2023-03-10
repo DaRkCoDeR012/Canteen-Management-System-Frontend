@@ -1,0 +1,36 @@
+.parent{
+    background-image: url("https://images.pexels.com/photos/1028599/pexels-photo-1028599.jpeg?auto=compress&cs=tinysrgb&w=800");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.row{
+    position: relative;
+    top: 30%;
+}
+
+.brand{
+    position: relative;
+    top: 20%;
+    left: 25%;
+}
+
+.brandhead{
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;900&display=swap');
+    font-family: 'Roboto Slab', serif;
+    font-weight: 900;
+    color: #537FE7;
+    font-size: 4rem;
+    letter-spacing: 10px;
+}
+
+.brandpar{
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;900&display=swap');
+    font-family: 'Roboto Slab', serif;
+    font-size: 1.6rem;
+}
+
+.form {
+    margin: 0 20%;
+}

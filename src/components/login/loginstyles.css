@@ -1,0 +1,10 @@
+.login{
+    background-color: rgba(255, 251, 245,0.8);
+    border-radius: 7px;
+    padding: 2%;
+    margin: 0 30%;
+}
+
+.btn-lg:hover{
+    background-color: #537FE7;
+}

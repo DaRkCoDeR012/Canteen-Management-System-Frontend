@@ -1,0 +1,39 @@
+.menucard img{
+    margin-top: 30px;
+    height: 180px;
+}
+
+.menucard{
+    border: solid;
+    margin: 40px;
+    color: #3A98B9;
+    border-color: #000;
+    display: inline-block;
+}
+
+.fa-plus{
+    padding-left: 20px;
+    font-size: 1.5rem;
+}
+
+.fa-minus{
+    padding-right: 20px;
+    font-size: 1.5rem;
+}
+
+.added span{
+    font-size: 1.5rem;
+}
+
+.added{
+    padding-bottom: 10px;
+}
+
+.cardbod{
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.imgdiv {
+    padding-left: 20px;
+}

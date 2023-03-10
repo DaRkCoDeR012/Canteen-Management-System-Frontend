@@ -1,0 +1,13 @@
+.ordercard {
+    display: inline-flex;
+    margin: 2%;
+    width: 300px;
+}
+
+.orderbtns {
+    margin: 0 0 3% 10%;
+}
+
+.orderbtn {
+    margin: 0 6%;
+}

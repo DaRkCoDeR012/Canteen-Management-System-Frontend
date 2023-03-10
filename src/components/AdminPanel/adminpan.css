@@ -1,0 +1,21 @@
+.adminpanelbg {
+  background-color: #ffffff;
+  background-image: url("https://www.transparenttextures.com/patterns/black-thread.png");
+}
+
+.usernav {
+  padding: 2% 5%;
+  font-size: 1.5rem;
+}
+
+.navname {
+  font-size: 1.8rem;
+}
+
+.usernav li {
+  margin: 0 10px;
+}
+
+.usernav li:hover {
+  cursor: pointer;
+}

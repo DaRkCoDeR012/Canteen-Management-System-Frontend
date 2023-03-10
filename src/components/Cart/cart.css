@@ -1,0 +1,22 @@
+.cartcard{
+    margin: 20px;
+    display: inline-block;
+}
+
+.cartcard img{
+    width: 200px;
+    height: 150px;
+    margin: 10px 0 10px 40px;
+}
+
+.order-btn {
+    margin: 0.5% 30% 2% 30%;
+}
+.order-total{
+    text-align: center;
+    background-color: green;
+    margin: 1% 30% 0 30%;
+    padding: 0 5px;
+    border-radius: 5px;
+    color: #fff;
+}
