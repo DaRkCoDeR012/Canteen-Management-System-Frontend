@@ -1,6 +1,6 @@
 import React from "react";
 import CanteenCard from "./CanteenCard";
-import axios from "axios";
+import axios from "../../api/axios";
 
 function Canteen(){
 
@@ -8,7 +8,7 @@ function Canteen(){
     const [canteens, setCanteens] = React.useState([]);
 
     React.useEffect(() => {
-        axios.get("http://localhost:8080/canteen")
+        axios.get("/canteen")
         .then((res)=>{
             setCanteens(res.data);
         })

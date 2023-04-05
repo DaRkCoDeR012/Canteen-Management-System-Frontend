@@ -4,7 +4,7 @@ import Cart from "../Cart/Cart";
 import UserProfile from "../Profile/UserProfile";
 import UserDashBoard from "../UserDashboard/DashBoard";
 import MyOrders from "../Orders/MyOrders";
-import axios from "axios";
+import axios from "../../api/axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./userhome.css";
 
@@ -22,7 +22,7 @@ function UserHome(props) {
   function logout(event) {
     event.preventDefault();
     localStorage.clear();
-    axios.delete("http://localhost:8080/cart");
+    axios.delete("/cart");
     navigate("/");
   }
 

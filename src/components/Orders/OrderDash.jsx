@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import axios from "../../api/axios";
 import DashOrderCard from "./DashOrderCard";
 
 function OrderDash(props){
@@ -10,7 +10,7 @@ function OrderDash(props){
 
 
     React.useEffect(()=>{
-        axios.get("http://localhost:8080/order/"+user)
+        axios.get("/order/"+user)
         .then((res)=>{setOrders(res.data)});
     },[]);
 

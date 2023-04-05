@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import axios from "../../api/axios"
 import "./addfood.css";
 import { useLocation } from "react-router-dom";
 
@@ -20,7 +20,7 @@ function ADDFOOD() {
     setFormErrors(validate(food));
     if (Object.keys(formErrors).length === 0 && isValid) {
       setIsValid(false);
-      axios.post("http://localhost:8080/food/"+ cid, food).then((res) => {
+      axios.post("/food/"+ cid, food).then((res) => {
         window.location.reload();
       });
     }

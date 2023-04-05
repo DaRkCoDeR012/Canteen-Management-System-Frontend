@@ -1,6 +1,6 @@
 import React from "react";
 import MenuCard from "./MenuCard";
-import axios from "axios";
+import axios from "../../api/axios";
 import { useLocation } from "react-router-dom";
 
 function Menu(){
@@ -10,7 +10,7 @@ function Menu(){
     const name=location.state.canteen_name;
     // console.log(name);
     React.useEffect(() => {
-        axios.get("http://localhost:8080/food/"+name)
+        axios.get("/food/"+name)
         .then((res)=>{
             setFoods(res.data);
         })
