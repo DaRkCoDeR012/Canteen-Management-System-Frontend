@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from "axios";
+import axios from "../../api/axios"
 import CryptoJS from "crypto-js";
 // import Dashboard from "../Dashboard/Dashboard";
 // import FoodItem from "../FoodItems/FoodItems";

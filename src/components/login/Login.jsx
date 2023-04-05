@@ -120,7 +120,7 @@ function Login(props) {
           id="floatingPassword"
           placeholder="Password"
           value={user.password}
-        /><a className="btn btn1" onClick={togglePassword}>
+        /><a className="btn btn2" onClick={togglePassword}>
         <i className="fa fa-eye" aria-hidden="true" ></i>
       </a>
         <p>{formErrors.password}</p>
