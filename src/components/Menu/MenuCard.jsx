@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import axios from "../../api/axios";
 import "./menu.css"
 import { useLocation } from "react-router-dom";
 
@@ -35,7 +35,7 @@ function MenuCard(props) {
     setCount(0);
     if(added){
     cart.quantity = count;
-    axios.post("http://localhost:8080/cart",cart).then();}
+    axios.post("/cart",cart).then();}
   }
 
   return (

@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import axios from "../../api/axios";
 import { useNavigate } from "react-router-dom";
 import "./register.css";
 
@@ -31,7 +31,7 @@ function Register() {
     setFormErrors(validate(user));
     if (Object.keys(formErrors).length === 0 && isValid) {
       setIsValid(false);
-      axios.post("http://localhost:8080/register", user).then((res) => {
+      axios.post("/register", user).then((res) => {
         if (res.data === "User already Exist") {
           alert(res.data);
           window.location.reload();

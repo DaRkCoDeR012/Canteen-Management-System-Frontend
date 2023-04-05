@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import axios from "../../api/axios"
 import "./loginstyles.css";
 
 import {useNavigate } from "react-router-dom";
@@ -33,7 +33,7 @@ function Login(props) {
     if (Object.keys(formErrors).length === 0 && isValid) {
       setIsValid(false);
       isHome
-        ? axios.post("http://localhost:8080/login", user).then((res) => {
+        ? axios.post("/login", user).then((res) => {
             if (res.data.message === "Login Successfull") {
               localStorage.setItem("usertoken", res.data.tkn);
               alert(res.data.message);

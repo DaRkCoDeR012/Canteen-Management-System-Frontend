@@ -23,7 +23,7 @@ function UserProfile() {
     const [user, setUser] = React.useState([]);
 
     React.useEffect(() => {
-        axios.get("http://localhost:8080/userprofile/"+user_id)
+        axios.get("/userprofile/"+user_id)
         .then((res)=>{
             const data = res.data[0];
             setUser(data);

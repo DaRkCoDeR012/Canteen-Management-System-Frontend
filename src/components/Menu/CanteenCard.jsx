@@ -1,6 +1,6 @@
 import React from "react";
 import UserHome from '../UserHome/UserHome';
-import axios from "axios";
+import axios from "../../api/axios";
 import "./menu.css"
 import { useLocation,useNavigate } from "react-router-dom";
 
@@ -56,7 +56,7 @@ function CanteenCard(props) {
     // setCount(0);
     // if(added){
     // cart.quantity = count;
-    // axios.post("http://localhost:8080/cart",cart).then();}
+    // axios.post("/cart",cart).then();}
 
   return (
     <div className="card mb-3 menucard" style={{ maxWidth: "540px" }}>

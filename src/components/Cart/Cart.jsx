@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import axios from "../../api/axios";
 import CartCard from "./CartCard";
 
 function Cart(props){
@@ -7,7 +7,7 @@ function Cart(props){
     let canteen_name= "";
     let orderTotal = 0;
     React.useEffect( () => {
-        axios.get("http://localhost:8080/cart").then((res)=>{
+        axios.get("/cart").then((res)=>{
         setCart(res.data);
     })},[]);
 
@@ -17,15 +17,15 @@ function Cart(props){
                 return index !== id;
             });
         });
-        axios.delete("http://localhost:8080/cart/" + event.target.id).then(res=>console.log(res.data));
+        axios.delete("/cart/" + event.target.id).then(res=>console.log(res.data));
     }
 
     function order(event){
         if(orderTotal > 0){
-        axios.post("http://localhost:8080/order/"+event.target.id+"/"+event.target.name+"/"+orderTotal+"/"+canteen_name,cart)
+        axios.post("/order/"+event.target.id+"/"+event.target.name+"/"+orderTotal+"/"+canteen_name,cart)
         .then(res=>console.log(res));
         setCart([]);
-        axios.delete("http://localhost:8080/cart");
+        axios.delete("/cart");
         }
         else{
             alert("Can't Place Empty Order");

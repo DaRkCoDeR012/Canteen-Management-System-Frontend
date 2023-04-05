@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import axios from "../../api/axios"
 import "./dashboard.css";
 import { useLocation } from "react-router-dom";
 
@@ -21,12 +21,12 @@ function Dashboard() {
   // console.log(cid);
 
   React.useEffect(() => {
-    axios.get("http://localhost:8080/allorder/"+cid).then((res) => {
+    axios.get("/allorder/"+cid).then((res) => {
       setOrder(res.data);
     });
     // console.log(orders);
     axios
-      .get("http://localhost:8080/gettotal/"+cid)
+      .get("/gettotal/"+cid)
       .then((res) => setRevenue(res.data));
   }, []);
 
