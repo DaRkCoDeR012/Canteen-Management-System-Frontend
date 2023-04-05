@@ -4,8 +4,8 @@ import CartCard from "./CartCard";
 
 function Cart(props){
     const [cart,setCart] = React.useState([]);
+    let canteen_name= "";
     let orderTotal = 0;
-
     React.useEffect( () => {
         axios.get("http://localhost:8080/cart").then((res)=>{
         setCart(res.data);
@@ -22,7 +22,7 @@ function Cart(props){
 
     function order(event){
         if(orderTotal > 0){
-        axios.post("http://localhost:8080/order/"+event.target.id+"/"+event.target.name+"/"+orderTotal,cart)
+        axios.post("http://localhost:8080/order/"+event.target.id+"/"+event.target.name+"/"+orderTotal+"/"+canteen_name,cart)
         .then(res=>console.log(res));
         setCart([]);
         axios.delete("http://localhost:8080/cart");
@@ -33,8 +33,12 @@ function Cart(props){
     }
 
     return(<div>{cart.map((item,index) => {
+        
+    // 
         const total = item.price*item.quantity;
             orderTotal = orderTotal+total;
+        canteen_name=item.canteen_name
+        // console.log(canteen_name);
             return(<CartCard
                 key={index}
                 index={index}
@@ -45,6 +49,7 @@ function Cart(props){
                 category={item.category}
                 quantity={item.quantity}
                 total={total}
+                canteen_name={item.canteen_name}
                 remove={remove}
             />);
     })}

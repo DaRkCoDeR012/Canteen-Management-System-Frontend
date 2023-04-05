@@ -1,8 +1,12 @@
 import React from "react";
 import axios from "axios";
 import "./addfood.css";
+import { useLocation } from "react-router-dom";
 
 function ADDFOOD() {
+  const location = useLocation();
+  const cid = location.state.name[3];
+  // console.log(cid);
   const [food, setFood] = React.useState({
     name: "",
     type: "Veg",
@@ -16,7 +20,7 @@ function ADDFOOD() {
     setFormErrors(validate(food));
     if (Object.keys(formErrors).length === 0 && isValid) {
       setIsValid(false);
-      axios.post("http://localhost:8080/food", food).then((res) => {
+      axios.post("http://localhost:8080/food/"+ cid, food).then((res) => {
         window.location.reload();
       });
     }

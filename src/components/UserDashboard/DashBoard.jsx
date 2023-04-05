@@ -1,23 +1,20 @@
 import React from "react";
 import Menu from "../Menu/Menu";
+import Canteen from "../Menu/Canteen.jsx";
 import Cart from "../Cart/Cart";
 import UserProfile from "../Profile/UserProfile";
-import UserDashBoard from "../UserDashboard/DashBoard";
-import MyOrders from "../Orders/MyOrders";
+import OrderDash from "../Orders/OrderDash";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./userhome.css";
 
-function UserHome(props) {
+function DashBoard() {
   const location = useLocation();
   const navigate = useNavigate();
-  const [isActive, setIsActive] = React.useState("Menu");
-  const canteen= location.state.canteen_name
+  const [isActive, setIsActive] = React.useState("Canteen");
+  const [option, setOption] = React.useState(<Canteen />);
   const userid = location.state.name[1];
   const username = location.state.name[0];
-  // console.log(canteen);
-  const [option, setOption] = React.useState(<Menu name={canteen} />);
-  
 
   function logout(event) {
     event.preventDefault();
@@ -28,30 +25,16 @@ function UserHome(props) {
 
   function handleClick(event) {
     setIsActive(event.target.id);
-    if (event.target.id === "Menu") {
-      setOption(<Menu/>);
-    } else if (event.target.id === "MyOrders") {
-      setOption(<MyOrders id={userid} />);
+    if (event.target.id === "Canteen") {
+      setOption(<Canteen/>);
     }
     else if (event.target.id === "Profile") {
       setOption(<UserProfile />)
-    }else if (event.target.id === "DashBoard") {
-      setOption(<UserDashBoard />);
-    } else if (event.target.id === "Cart") {
-      setOption(<Cart id={userid} username={username}/>);
+    } else if (event.target.id === "MyOrders") {
+      setOption(<OrderDash id={userid} />);
+    // } else if (event.target.id === "Cart") {
+    //   setOption(<Cart id={userid} username={username}/>);
     }
-  }
-
-  function handleClick2(event) {
-    event.preventDefault();
-    navigate("/userdashboard",
-    {
-      state:{
-        name:[
-          username,userid
-      ]
-      }
-    })
   }
 
   return (
@@ -60,12 +43,9 @@ function UserHome(props) {
         <nav className="navbar navbar-expand-lg bg-body-tertiary usernav">
           <div className="container-fluid">
             <a id="Profile" className={
-                      isActive === "Profile" ? "nav-link active" : "navbar-brand navname" } onClick={handleClick}>
+                      isActive === "Profile" ? "navbar-brand navname active" : "navbar-brand navname" } onClick={handleClick}>
               {username}
             </a>
-            {/* <a className="navbar-brand navname" href="/userhome">
-              {canteen}
-            </a> */}
             <button
               className="navbar-toggler"
               type="button"
@@ -82,12 +62,12 @@ function UserHome(props) {
                 <li className="nav-item">
                   <a
                     className={
-                      isActive === "Menu" ? "nav-link active" : "nav-link"
+                      isActive === "Canteen" ? "nav-link active" : "nav-link"
                     }
-                    id="Menu"
+                    id="Canteen"
                     onClick={handleClick}
                   >
-                    Menu
+                    Canteen
                   </a>
                 </li>
                 <li className="nav-item">
@@ -101,7 +81,7 @@ function UserHome(props) {
                     My Orders
                   </a>
                 </li>
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <a
                     className={
                       isActive === "Cart" ? "nav-link active" : "nav-link"
@@ -111,7 +91,7 @@ function UserHome(props) {
                   >
                     Cart
                   </a>
-                </li>
+                </li> */}
                 <li className="nav-item">
                   <a className="nav-link" onClick={logout}>
                     Logout
@@ -122,10 +102,9 @@ function UserHome(props) {
           </div>
         </nav>
       </div>
-      <div className="userhomebg"><a className="nav-link" onClick={handleClick2}><h2>{canteen}</h2></a></div>
       <div className="col-12 userhomebg">{option}</div>
     </div>
   );
 }
 
-export default UserHome;
+export default DashBoard;

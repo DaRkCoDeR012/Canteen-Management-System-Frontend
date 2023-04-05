@@ -1,17 +1,20 @@
 import React from "react";
 import axios from "axios";
 import "./menu.css"
+import { useLocation } from "react-router-dom";
 
 function MenuCard(props) {
-
+  const location = useLocation;
     const [added, setAdded] = React.useState(false);
     const [count, setCount] = React.useState(0);
-  
+    // console.log(props.canteen_name);
+  // const canteen_name=location.state.canteen_name;
   const cart = {
     name: props.name,
     type: props.type,
     category: props.category,
     price: props.price,
+    canteen_name:props.canteen_name,
   }
   
   function add(){

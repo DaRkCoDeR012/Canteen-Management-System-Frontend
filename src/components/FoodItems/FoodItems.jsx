@@ -1,10 +1,13 @@
 import React from "react";
 import axios from "axios";
-import "./fooditem.css"
+import "./fooditem.css";
+import { useLocation } from "react-router-dom";
 
 function FoodItem() {
   const [foods, setFoods] = React.useState([]);
-
+  const location = useLocation();
+  const canteen_name= location.state.name[2];
+  const cid= location.state.name[3];
   function removeitem(event) {
     setFoods((prevFood) => {
       const id = event.target.name;
@@ -13,12 +16,12 @@ function FoodItem() {
       });
     });
     axios
-      .delete("http://localhost:8080/food/" + event.target.id)
+      .delete("http://localhost:8080/food/"+cid+ "/" + event.target.id)
       .then(window.location.reload());
   }
 
   React.useEffect(() => {
-    axios.get("http://localhost:8080/food").then((res) => {
+    axios.get("http://localhost:8080/food/"+canteen_name).then((res) => {
       setFoods(res.data);
     });
   }, []);

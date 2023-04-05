@@ -1,19 +1,24 @@
 import React from "react";
 import axios from "axios";
-import OrderCard from "./OrderCard";
+import OrderCardAdmin from "./OrderCardAdmin";
+import { useLocation } from "react-router-dom";
 
 function Order(){
-
+    const location = useLocation();
+    const cid = location.state.name[3];
+    // console.log(name)
     const [orders,setOrders] = React.useState([]);
 
     React.useEffect(()=>{
-        axios.get("http://localhost:8080/order")
-        .then((res)=>{setOrders(res.data)});
+        axios.get("http://localhost:8080/allorder/"+cid)
+        .then((res)=>{setOrders(res.data)}
+        );
+        // console.log(orders)
     },[]);
 
     return(<div className="Menu">
         {orders.map((order,index)=>{
-            return(<OrderCard
+            return(<OrderCardAdmin
             username={order.username}
             key={index}
             user={false}
@@ -21,6 +26,7 @@ function Order(){
             cart={order.cart}
             time = {order.ordertime}
             total = {order.total}
+            canteen_name = {order.canteen_name}
         />)
         })}
         

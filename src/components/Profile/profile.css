@@ -1,0 +1,66 @@
+/* .adminpanelbg {
+    background-color: #ffffff;
+    background-image: url("https://www.transparenttextures.com/patterns/black-thread.png");
+  }
+  
+  .usernav {
+    padding: 2% 5%;
+    font-size: 1.5rem;
+  }
+  */ 
+
+  .card1{
+    margin: auto;
+    justify-content: center;
+    text-align: center;
+  }
+  table{
+    text-align: left;
+  }
+  td{
+    padding: 8px
+  }
+  .button1
+{
+    margin-top: 10px;
+}  
+i{
+  color: black;
+  size: 20px;
+}
+td a{
+  border: 2px, solid;
+}
+.pass{
+  width: 20px;
+}
+.menucard1{
+    /* margin-left: auto; */
+    padding: 10px;
+    border: solid;
+    margin: 40px;
+    color: #3A98B9;
+    border-color: #000;
+    display: inline-block;
+    /* justify-content: center; */
+} 
+/*
+  .navname {
+    font-size: 1.8rem;
+  }
+  
+  .usernav li {
+    margin: 0 10px;
+  }
+  
+  .usernav li:hover {
+    cursor: pointer;
+  }
+*/
+  .profile{
+    font-size: 20px;
+    padding: 2%;
+    text-align: center;
+    flex-direction: row;
+    justify-content: center;
+  } 
