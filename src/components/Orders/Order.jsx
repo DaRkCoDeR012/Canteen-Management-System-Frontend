@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import axios from "../../api/axios";
 import OrderCardAdmin from "./OrderCardAdmin";
 import { useLocation } from "react-router-dom";
 
@@ -10,7 +10,7 @@ function Order(){
     const [orders,setOrders] = React.useState([]);
 
     React.useEffect(()=>{
-        axios.get("http://localhost:8080/allorder/"+cid)
+        axios.get("/allorder/"+cid)
         .then((res)=>{setOrders(res.data)}
         );
         // console.log(orders)

@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import axios from "../../api/axios"
 import "./fooditem.css";
 import { useLocation } from "react-router-dom";
 
@@ -16,12 +16,12 @@ function FoodItem() {
       });
     });
     axios
-      .delete("http://localhost:8080/food/"+cid+ "/" + event.target.id)
+      .delete("/food/"+cid+ "/" + event.target.id)
       .then(window.location.reload());
   }
 
   React.useEffect(() => {
-    axios.get("http://localhost:8080/food/"+canteen_name).then((res) => {
+    axios.get("/food/"+canteen_name).then((res) => {
       setFoods(res.data);
     });
   }, []);

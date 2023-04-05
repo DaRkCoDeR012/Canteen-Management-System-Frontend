@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from "axios";
+import axios from '../../api/axios';
 // import Dashboard from "../Dashboard/Dashboard";
 // import FoodItem from "../FoodItems/FoodItems";
 // import ADDFOOD from "../AddFood/ADDFOOD";
@@ -22,7 +22,7 @@ function Profile() {
     const [admin, setAdmin] = React.useState([]);
 
     React.useEffect(() => {
-        axios.get("http://localhost:8080/adminprofile/"+admin_id)
+        axios.get("/adminprofile/"+admin_id)
         .then((res)=>{
             const data = res.data[0];
             // console.log(data);
