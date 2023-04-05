@@ -1,11 +1,13 @@
 import React from "react";
 import axios from "axios";
 import "./dashboard.css";
+import { useLocation } from "react-router-dom";
 
 const date = new Date().getDate();
 const fulldate = new Date().toLocaleDateString();
 
 function Dashboard() {
+  const location = useLocation();
   const [time, setTime] = React.useState(new Date().toLocaleTimeString());
   const [orders, setOrder] = React.useState([]);
   const [revenue, setRevenue] = React.useState(0);
@@ -15,13 +17,16 @@ function Dashboard() {
     const newtime = new Date().toLocaleTimeString();
     setTime(newtime);
   }
+  const cid = location.state.name[3];
+  // console.log(cid);
 
   React.useEffect(() => {
-    axios.get("http://localhost:8080/order").then((res) => {
+    axios.get("http://localhost:8080/allorder/"+cid).then((res) => {
       setOrder(res.data);
     });
+    // console.log(orders);
     axios
-      .get("http://localhost:8080/gettotal")
+      .get("http://localhost:8080/gettotal/"+cid)
       .then((res) => setRevenue(res.data));
   }, []);
 

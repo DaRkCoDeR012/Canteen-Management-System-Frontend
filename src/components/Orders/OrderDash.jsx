@@ -1,8 +1,8 @@
 import React from "react";
 import axios from "axios";
-import OrderCard from "./OrderCard";
+import DashOrderCard from "./DashOrderCard";
 
-function MyOrders(props){
+function OrderDash(props){
 
     const [orders,setOrders] = React.useState([]);
     const user = props.id;
@@ -16,7 +16,7 @@ function MyOrders(props){
 
     return (<div className="Menu">
         {orders.map((order,index) => {
-           return( <OrderCard
+           return( <DashOrderCard
             key={index}
             user={true}
             index={index+1}
@@ -30,4 +30,4 @@ function MyOrders(props){
     </div>);
 }
 
-export default MyOrders;
+export default OrderDash;

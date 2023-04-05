@@ -16,11 +16,7 @@ nav{
 .usernav li:hover{
     cursor: pointer;
 }
-h2{
-    text-align: center;
-    font-weight: bolder;
-    font-family: cursive;
-}
+
 .userhomebg{
     background-color: #ffffff;
     background-image: url("https://www.transparenttextures.com/patterns/black-thread.png");
@@ -28,4 +24,5 @@ h2{
 
 .active{
     font-weight: bolder;
+    font-size: 1.5rem;
 }

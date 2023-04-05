@@ -1,6 +1,7 @@
 import React from "react";
 import Homepage from "./Homepage/Homepage";
 import Register from "./Register/Register";
+import UserDashBoard from "./UserDashboard/DashBoard";
 import UserHome from "./UserHome/UserHome";
 import Admin from "./Admin/Admin";  
 import AdminPanel from "./AdminPanel/AdminPanel";
@@ -19,6 +20,7 @@ function Routing() {
             <Route exact path="/" element={<Homepage />} />
             <Route exact path="/register" element={<Register />} />
             <Route exact path="/userhome" element={userflag?<UserHome />:<Homepage />} />
+            <Route exact path="/userdashboard" element={userflag?<UserDashBoard />:<Homepage />} />
             <Route exact path="/admin" element={<Admin />} />
             <Route exact path="/adminpanel" element={adminflag?<AdminPanel />:<Admin />}/>
           </Routes>

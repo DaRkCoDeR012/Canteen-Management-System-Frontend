@@ -12,6 +12,7 @@ function Login(props) {
     password: "",
   });
 
+  const [passwordShown, setPasswordShown] = React.useState(false);
   const [formErrors, setFormErrors] = React.useState({});
   const [isValid, setIsValid] = React.useState(true);
   const isHome = props.isHome;
@@ -36,7 +37,7 @@ function Login(props) {
             if (res.data.message === "Login Successfull") {
               localStorage.setItem("usertoken", res.data.tkn);
               alert(res.data.message);
-              navigate("/userhome", {
+              navigate("/userdashboard", {
                 state: {
                   name: res.data.name,
                 },
@@ -51,7 +52,12 @@ function Login(props) {
             if (res.data.message === "Login Successfull") {
               localStorage.setItem("admintoken", res.data.tkn);
               alert(res.data.message);
-              navigate("/adminpanel");
+              navigate("/adminpanel",{
+              state: {
+                name:  res.data.name
+              }
+            });
+                // console.log();
               window.location.reload();
             } else {
               alert(res.data);
@@ -85,6 +91,9 @@ function Login(props) {
     navigate("/register");
   }
 
+  const togglePassword = () => {
+    setPasswordShown(!passwordShown);
+  };
   return (
     <form className="login">
       <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
@@ -102,18 +111,22 @@ function Login(props) {
         <p>{formErrors.email}</p>
         <label htmlFor="floatingInput">Email address</label>
       </div>
-      <div className="form-floating">
+      <div className="form-floating form-group">
         <input
           onChange={handleChange}
           name="password"
-          type="password"
-          className="form-control"
+          type={passwordShown ? "text" : "password"}
+          className="form-control col-4"
           id="floatingPassword"
           placeholder="Password"
           value={user.password}
-        />
+        /><a className="btn btn1" onClick={togglePassword}>
+        <i className="fa fa-eye" aria-hidden="true" ></i>
+      </a>
         <p>{formErrors.password}</p>
-        <label htmlFor="floatingPassword">Password</label>
+        
+        <label htmlFor="floatingPassword" >Password</label>
+        
       </div>
       <br />
       <button className="w-100 btn btn-lg" onClick={submit}>

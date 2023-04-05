@@ -1,18 +1,22 @@
 import React from "react";
 import Order from "../Orders/Order";
+import Profile from "../Profile/Profile";
 import Dashboard from "../Dashboard/Dashboard";
 import FoodItem from "../FoodItems/FoodItems";
 import ADDFOOD from "../AddFood/ADDFOOD";
-import { useNavigate } from "react-router-dom";
+import { useLocation,useNavigate } from "react-router-dom";
 import "./adminpan.css";
 
 function AdminPanel(){
 
     const [isclicked,setIsClicked] = React.useState(false);
     const navigate = useNavigate();
+    const location = useLocation();
     const [isActive, setIsActive] = React.useState("Dashboard");
     const [option, setOption] = React.useState(<Dashboard />);
-
+    // const canteen_id = location.state.name[3];
+    const canteen_name = location.state.name[2];
+    // console.log(location.state.name);
     function logout(event){
         setIsClicked(true);
         setTimeout(()=>setIsClicked(false),1000);
@@ -22,10 +26,13 @@ function AdminPanel(){
     };
     
     function handleClick(event){
-        setIsActive(event.target.id);
-        if(event.target.id === "Dashboard"){
-            setOption(<Dashboard />);
-        }
+      setIsActive(event.target.id);
+      if(event.target.id === "Dashboard"){
+        setOption(<Dashboard />);
+      }
+      else if (event.target.id === "Profile") {
+        setOption(<Profile />)
+      }
         else if(event.target.id === "Orders"){
             setOption(<Order />);
         }
@@ -39,7 +46,8 @@ function AdminPanel(){
 
     return(<div><nav className="navbar navbar-expand-lg bg-body-tertiary">
     <div className="container-fluid">
-      <a className="navbar-brand navname" href="/adminpanel">Admin</a>
+      <a className={
+         isActive === "Profile" ? "nav-link active" : "navbar-brand navname" } id="Profile" onClick={handleClick} >{canteen_name}</a>
       <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>

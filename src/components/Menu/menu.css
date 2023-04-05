@@ -1,6 +1,7 @@
 .menucard img{
-    margin-top: 30px;
-    height: 180px;
+    margin-top: auto;
+    padding: auto;
+    /* height: 180px; */
 }
 
 .menucard{
@@ -10,7 +11,12 @@
     border-color: #000;
     display: inline-block;
 }
-
+h3{
+    text-align: center;
+    font-weight: bolder;
+    font-family: cursive;
+    /* font-size: 24px; */
+}
 .fa-plus{
     padding-left: 20px;
     font-size: 1.5rem;
@@ -30,10 +36,20 @@
 }
 
 .cardbod{
-    padding-left: 0;
+    text-align: center;
+    /* padding-left: ; */
     margin-left: 0;
 }
 
 .imgdiv {
     padding-left: 20px;
+}
+a:hover{
+    cursor: pointer;
+    color: rgb(240, 13, 13);
+}
+
+a{
+    border-color: #000;
+    border-width: 2px;
 }
