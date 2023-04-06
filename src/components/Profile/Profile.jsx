@@ -9,7 +9,6 @@ import "./profile.css";
 function Profile() {
 
     // const [isclicked,setIsClicked] = React.useState(false);
-    // const navigate = useNavigate();
     const location = useLocation();
     // const [isActive, setIsActive] = React.useState("Dashboard");
     // const [option, setOption] = React.useState(<Dashboard />);
@@ -65,7 +64,7 @@ function Profile() {
         </div> */}
         <div className="col-md-12 cardbod">
           <div className="card-body">
-            <h3>Profile</h3><hr/>
+            <h3><i class="fa fa-id-card" aria-hidden="true"></i>    Profile</h3><hr/>
             <table >
                 <tr>
                     <td>Id:</td>

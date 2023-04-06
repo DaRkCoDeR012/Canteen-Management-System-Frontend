@@ -5,12 +5,11 @@ import "./register.css";
 
 function Register() {
   const history = useNavigate();
-  const [user, setUser] = React.useState({
-    fname: "",
-    lname: "",
+  const [admin, setAdmin] = React.useState({
+    name: "",
+    lcanteen_name: "",
     email: "",
     password: "",
-    confirmpass: "",
   });
   const [passwordShown, setPasswordShown] = React.useState(false);
   const [formErrors, setFormErrors] = React.useState({});
@@ -18,9 +17,9 @@ function Register() {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setUser((prevUser) => {
+    setAdmin((prevAdmin) => {
       return {
-        ...prevUser,
+        ...prevAdmin,
         [name]: value,
       };
     });
@@ -28,62 +27,62 @@ function Register() {
 
   const submit = (event) => {
     event.preventDefault();
-    setFormErrors(validate(user));
+    setFormErrors(validate(admin));
     if (Object.keys(formErrors).length === 0 && isValid) {
       setIsValid(false);
-      axios.post("/register", user).then((res) => {
-        if (res.data === "User already Exist") {
+      axios.post("/adminregister", admin).then((res) => {
+        if (res.data === "Admin already Exist") {
           alert(res.data);
           window.location.reload();
         } else {
           alert(res.data);
-          history("/");
+          history("/admin");
         }
       });
-      setUser({
-        fname: "",
-        lname: "",
+      setAdmin({
+        name: "",
+        canteen_name: "",
         email: "",
         password: "",
-        confirmpass: "",
       });
     }
   };
 
-  const validate = (user) => {
+  const validate = (admin) => {
     const errors = {};
     const regex = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
-    if (!user.fname) {
-      errors.fname = "First Name is required!";
+    if (!admin.name) {
+      errors.name = "Name is required!";
       setIsValid(false);
     }
-    if (!user.lname) {
-      errors.lname = "Last Name is required!";
+    if (!admin.canteen_name) {
+      errors.canteen_name = "Canteen Name is required!";
       setIsValid(false);
     }
-    if (!user.email) {
+    if (!admin.email) {
       errors.email = "Email is required!";
       setIsValid(false);
-    } else if (!regex.test(user.email)) {
+    } else if (!regex.test(admin.email)) {
       errors.email = "Enter a valid Email";
       setIsValid(false);
     }
-    if (!user.password) {
+    if (!admin.password) {
       errors.password = "Password is required!";
       setIsValid(false);
     }
-    if (!user.confirmpass) {
-      errors.confirmpass = "Confirm Password is required!";
-      setIsValid(false);
-    } else if (user.password !== user.confirmpass) {
-      errors.confirmpass = "Password and Confirm Password should be same";
-      setIsValid(false);
-    }
+    // if (!admin.confirmpass) {
+    //   errors.confirmpass = "Confirm Password is required!";
+    //   setIsValid(false);
+    // } else if (admin.password !== admin.confirmpass) {
+    //   errors.confirmpass = "Password and Confirm Password should be same";
+    //   setIsValid(false);
+    // }
     return errors;
   };
   const togglePassword = () => {
     setPasswordShown(!passwordShown);
   };
+
   return (
     <div className="parent register">
       <form className="registerform">
@@ -92,28 +91,28 @@ function Register() {
         <div className="form-floating">
           <input
             onChange={handleChange}
-            name="fname"
+            name="name"
             type="text"
             className="form-control"
             id="floatingInput"
-            placeholder="First Name"
-            value={user.fname}
+            placeholder="Name"
+            value={admin.name}
           />
           <p>{formErrors.fname}</p>
-          <label htmlFor="floatingInput">First Name</label>
+          <label htmlFor="floatingInput">Name</label>
         </div>
         <div className="form-floating">
           <input
             onChange={handleChange}
-            name="lname"
+            name="canteen_name"
             type="text"
             className="form-control"
             id="floatingInput"
-            placeholder="Last Name"
-            value={user.lname}
+            placeholder="Canteen Name"
+            value={admin.canteen_name}
           />
-          <p>{formErrors.lname}</p>
-          <label htmlFor="floatingInput">Last Name</label>
+          <p>{formErrors.canteen_name}</p>
+          <label htmlFor="floatingInput">Canteen Name</label>
         </div>
         <div className="form-floating">
           <input
@@ -123,7 +122,7 @@ function Register() {
             className="form-control"
             id="floatingInput"
             placeholder="Email"
-            value={user.email}
+            value={admin.email}
           />
           <p>{formErrors.email}</p>
           <label htmlFor="floatingInput">Email address</label>
@@ -132,36 +131,35 @@ function Register() {
           <input
             onChange={handleChange}
             name="password"
-            type="password"
+            type={passwordShown ? "text" : "password"}
             className="form-control"
             id="floatingPassword"
             placeholder="Password"
-            value={user.password}
+            value={admin.password}
           />
           <p>{formErrors.password}</p>
           <label htmlFor="floatingPassword">Password</label>
         </div>
-        <div className="form-floating">
+        <div class="row justify-content-end">
+            <div class="col-6">
+                <a className="btn2 " onClick={togglePassword}>
+                    <p>{passwordShown ? <i className="fa fa-eye-slash"aria-hidden="true" ></i> :<i className="fa fa-eye" aria-hidden="true" ></i> }      {passwordShown ? "Hide password" : "Show password"}</p>
+                </a>
+            </div>
+        </div>
+        {/* <div className="form-floating">
           <input
             onChange={handleChange}
             name="confirmpass"
-            type={passwordShown ? "text" : "password"}
+            type="password"
             className="form-control"
             id="floatingPassword"
             placeholder="Confirm Password"
-            value={user.confirmpass}
+            value={admin.confirmpass}
           />
           <p>{formErrors.confirmpass}</p>
           <label htmlFor="floatingPassword">Confirm Password</label>
-        </div>
-        <div class="row justify-content-end">
-    <div class="col-6">
-        <a className="btn2 " onClick={togglePassword}>
-          <p>
-        {passwordShown ? <i className="fa fa-eye-slash"aria-hidden="true" ></i> :<i className="fa fa-eye" aria-hidden="true" ></i> }      {passwordShown ? "Hide password" : "Show password"}       </p>
-      </a>
-      </div>
-      </div>
+        </div> */}
         <button className="w-100 btn btn-lg registerbtn" onClick={submit}>
           Register
         </button>

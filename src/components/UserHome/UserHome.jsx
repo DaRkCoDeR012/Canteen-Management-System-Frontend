@@ -12,9 +12,9 @@ function UserHome(props) {
   const location = useLocation();
   const navigate = useNavigate();
   const [isActive, setIsActive] = React.useState("Menu");
-  const canteen= location.state.canteen_name
-  const userid = location.state.name[1];
-  const username = location.state.name[0];
+  const canteen= props.name
+  const username = props.owner
+   const userid = location.state.name[0];
   // console.log(canteen);
   const [option, setOption] = React.useState(<Menu name={canteen} />);
   

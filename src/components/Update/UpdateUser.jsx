@@ -1,42 +1,38 @@
 import React from 'react';
 import axios from "../../api/axios"
-// import UpdateUser from '../Update/UpdateUser'
 // import CryptoJS from "crypto-js";
 import { useLocation,useNavigate } from "react-router-dom";
-import "./profile.css";
+import "../Profile/profile.css";
 
-function UserProfile() {
-  const navigate = useNavigate();
+function UpdateUser() {
  
     const location = useLocation();
     // const [isActive, setIsActive] = React.useState("Dashboard");
-    const user_id = location.state.name[1];
     // const [option, setOption] = React.useState(<UpdateUser id={user_id}/>);
     // const canteen_name = location.state.name[2];
     // const cid = location.state.name[3];
-    const user_name = location.state.name[0];
+    const user_id = location.state.name[0];
+    const user_name = location.state.name[1];
+    const user_email = location.state.name[4];
+    const user_password = location.state.name[3];
+    // console.log(data);
+    
+    // const [user, setUser] = React.useState([]);
+    // setUser(data);
+    
+    // React.useEffect(() => {
+    //     axios.get("/userprofile/"+user_id)
+    //     .then((res)=>{
+    //         const data = res.data[0];
+    //         setUser(data);
+    //     })
+    //   },[]); 
 
-
-    const [user, setUser] = React.useState([]);
-
-    React.useEffect(() => {
-        axios.get("/userprofile/"+user_id)
-        .then((res)=>{
-            const data = res.data[0];
-            // console.log(data);
-            setUser(data);
-        })
-      },[]); 
-
-    function handleClick(event) {
-      navigate("/updateUser",
-      {
-        state:{
-          name:[
-          user_id,user_name,user.lname,user.email,user.password
-        ]}
-      })
-    }
+    // function handleClick(event) {
+    //   if(event.target.id === "UpdateUser"){
+    //     setOption(<UpdateUser />);
+    //   }
+    // }
     
   return (
     <div>
@@ -57,7 +53,10 @@ function UserProfile() {
                 </tr>
                 <tr>
                     <td>Name:</td>
-                    <td>{user_name} {user.lname}</td>
+                    <td>
+                        <input type="text" placeHolder={user_name}/>
+                        {/* {user_name} {user.lname} */}
+                    </td>
                     {/* <td>User Id:</td> */}
                 </tr>
                 {/* <tr>
@@ -72,13 +71,17 @@ function UserProfile() {
                 {/* </tr> */}
                 <tr>
                     <td>Email:</td>
-                    <td>{user.email}</td>
+                    <td>
+                        <input type="text" placeHolder={user_email}/>
+                    </td>
                     {/* <td>User Id:</td> */}
                 </tr>
                 <tr>
                     <td>Password:</td>
-                    <td className="pass">{user.password}  </td>
-                    <td><a ><i className="fa fa-eye" aria-hidden="true" ></i></a></td>
+                    <td className="pass">
+                        <input type="text" placeHolder={user_password}/> 
+                     </td>
+                    {/* <td><a ><i className="fa fa-eye" aria-hidden="true" ></i></a></td> */}
                 </tr>
             </table>
             {/* <h3 className="card-title">User Id: {user_id}</h3>
@@ -91,7 +94,7 @@ function UserProfile() {
                 Canteen Name: {canteen_name}
             </h4> */}
             {/* <div className="added"><i onClick={minus} className="fa-solid fa-minus"></i><span>{count}</span><i onClick={add} className="fa-solid fa-plus"></i></div> */}
-            <button className="button1" id="UpdateUser" onClick={handleClick}>Update Profile</button>
+            <button className="button1">Update Profile</button>
           </div>
         </div>
       </div>
@@ -101,4 +104,4 @@ function UserProfile() {
   )
 }
 
-export default UserProfile;
+export default UpdateUser;

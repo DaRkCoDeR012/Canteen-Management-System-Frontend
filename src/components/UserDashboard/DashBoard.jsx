@@ -2,6 +2,8 @@ import React from "react";
 import Menu from "../Menu/Menu";
 import Canteen from "../Menu/Canteen.jsx";
 import Cart from "../Cart/Cart";
+
+// import UpdateUser from '../Update/UpdateUser'
 import UserProfile from "../Profile/UserProfile";
 import OrderDash from "../Orders/OrderDash";
 import axios from "../../api/axios";
@@ -44,7 +46,7 @@ function DashBoard() {
           <div className="container-fluid">
             <a id="Profile" className={
                       isActive === "Profile" ? "navbar-brand navname active" : "navbar-brand navname" } onClick={handleClick}>
-              {username}
+              <i className="fa fa-user" aria-hidden="true"></i>  {username}
             </a>
             <button
               className="navbar-toggler"

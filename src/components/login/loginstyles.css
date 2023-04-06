@@ -11,25 +11,41 @@
 input{
     border-radius: 0px;
 }
-.form-group{
 
-    display: flex;
-    /* flex-direction: column; */
-    width: 310px;
-    /* margin: 10px; */
-    /* padding: 0px; */
-  }
+a.btn2{
+  display: flex;
+  align-items: flex-end;
+  justify-items: safe;
+}
+i{
+  height: 14px;
+  padding-left: 10px;
+  margin-bottom: 4px;
+  /* color: blanchedalmond; */
+}
   .btn2{
-    background-color: #c2b588;
-    align-items: center;
-    padding: auto;
-    border-width: 2px;
-    border-color: black;
-    border-radius: 0px;
-    border-top: 0px;
-    border-bottom: 0px;
-    border-right: 0px;
+    /* background-color: #c2b588; */
+    /* height: auto; */
+    /* align: right;   */
+     display: block;
+    box-sizing: content-box;
+    flex-direction: column;
+    justify-content: right;
+    text-decoration: none; 
+    /* padding: auto; */
+    /* margin: auto; */
+    color: black;
   }
-  .btn1.hover{
+  .btn.hover{
     background-color: #537FE7;
+  }
+  /* button{
+    
+    display: block;
+    flex-direction: column;
+    justify-content: center;
+  } */
+
+  .btn2.hover{
+
   }

@@ -15,12 +15,12 @@ function CanteenCard(props) {
     const [added, setAdded] = React.useState(false);
     const [count, setCount] = React.useState(0);
   
-  const cart = {
-    canteen_name: props.name,
-    Owner: props.owner,
+  // const cart = {
+  //   canteen_name: props.name,
+  //   Owner: props.owner,
     // category: props.category,
     // price: props.price,
-  }
+  // }
   
   function add(){
     setCount(count+1);
@@ -43,15 +43,15 @@ function CanteenCard(props) {
             canteen_name: props.name
         }
     });}
-    function handleClick(event) {
-        setIsActive(event.target.id);
-        if (event.target.id === "Menu") {
-          setOption(<UserHome name={props.name}/>);}
+    // function handleClick(event) {
+    //     setIsActive(event.target.id);
+    //     if (event.target.id === "Menu") {
+    //       setOption(<UserHome name={props.name}/>);}
         // } else if (event.target.id === "MyOrders") {
         //   setOption(<MyOrders id={userid} />);
         // } else if (event.target.id === "Cart") {
         //   setOption(<Cart id={userid} username={username}/>);
-        }
+        // }
       
     // setCount(0);
     // if(added){
