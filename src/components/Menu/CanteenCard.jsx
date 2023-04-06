@@ -1,62 +1,17 @@
 import React from "react";
-import UserHome from '../UserHome/UserHome';
-import axios from "../../api/axios";
 import "./menu.css"
-import { useLocation,useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function CanteenCard(props) {
-    const location = useLocation();
     const navigate = useNavigate();
-    const userid = location.state.name[1];
-    const username = location.state.name[0];
     const [isActive, setIsActive] = React.useState("Menu");
-    const [option, setOption] = React.useState(<UserHome />);
-
-    const [added, setAdded] = React.useState(false);
-    const [count, setCount] = React.useState(0);
   
-  const cart = {
-    canteen_name: props.name,
-    Owner: props.owner,
-    // category: props.category,
-    // price: props.price,
-  }
-  
-  function add(){
-    setCount(count+1);
-    setAdded(true);
-  }
-
-  function minus(){
-    if(count > 0){
-        setCount(count-1);
-    }
-    else{
-        setAdded(false);
-    }
-  }
 
   function gotomenu(event){
-    navigate("/userhome",{
-        state:{
-            name:location.state.name,
-            canteen_name: props.name
-        }
-    });}
-    function handleClick(event) {
-        setIsActive(event.target.id);
-        if (event.target.id === "Menu") {
-          setOption(<UserHome name={props.name}/>);}
-        // } else if (event.target.id === "MyOrders") {
-        //   setOption(<MyOrders id={userid} />);
-        // } else if (event.target.id === "Cart") {
-        //   setOption(<Cart id={userid} username={username}/>);
-        }
-      
-    // setCount(0);
-    // if(added){
-    // cart.quantity = count;
-    // axios.post("/cart",cart).then();}
+    navigate("/userhome",
+    {state:{name: props.name}}
+    );
+  }
 
   return (
     <div className="card mb-3 menucard" style={{ maxWidth: "540px" }}>

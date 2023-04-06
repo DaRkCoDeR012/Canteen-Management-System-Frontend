@@ -1,11 +1,13 @@
 import React from "react";
 import axios from "../../api/axios"
 import "./addfood.css";
+import useAuth from "../../hooks/useAuth";
 import { useLocation } from "react-router-dom";
 
 function ADDFOOD() {
   const location = useLocation();
-  const cid = location.state.name[3];
+  const {auth} = useAuth()
+  const cid = auth?.canteen._id;
   // console.log(cid);
   const [food, setFood] = React.useState({
     name: "",

@@ -1,11 +1,11 @@
 import React from "react";
 import axios from "../../api/axios";
 import OrderCardAdmin from "./OrderCardAdmin";
-import { useLocation } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 function Order(){
-    const location = useLocation();
-    const cid = location.state.name[3];
+    const {auth} = useAuth();
+    const cid = auth?.canteen?._id;
     // console.log(name)
     const [orders,setOrders] = React.useState([]);
 

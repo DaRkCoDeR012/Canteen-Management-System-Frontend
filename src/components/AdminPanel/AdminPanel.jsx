@@ -4,18 +4,19 @@ import Profile from "../Profile/Profile";
 import Dashboard from "../Dashboard/Dashboard";
 import FoodItem from "../FoodItems/FoodItems";
 import ADDFOOD from "../AddFood/ADDFOOD";
-import { useLocation,useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 import "./adminpan.css";
 
 function AdminPanel(){
 
     const [isclicked,setIsClicked] = React.useState(false);
+    const {auth} = useAuth();
     const navigate = useNavigate();
-    const location = useLocation();
     const [isActive, setIsActive] = React.useState("Dashboard");
     const [option, setOption] = React.useState(<Dashboard />);
     // const canteen_id = location.state.name[3];
-    const canteen_name = location.state.name[2];
+    const canteen_name = auth?.foundAdmin?.canteen_name;
     // console.log(location.state.name);
     function logout(event){
         setIsClicked(true);
@@ -73,29 +74,6 @@ function AdminPanel(){
     </div>
   </nav>
   <div className="col-12 adminpanelbg">{option}</div></div>);
-
-  //   return(<div className="parent"><div className="info">
-  //   <div className="infoitem1">Admin</div>
-  //   <div className={isclicked ? "infoitem2 pressed" : "infoitem2"} onClick={logout}>Logout</div>
-  // </div>
-  // <div className="UserHome">
-  //   <ul className="NavMenu">
-  //     <button className={isActive==="Dashboard"?"button1 active":"button1"} onClick={handleClick}>
-  //       <li id="Dashboard" className="NavItem">Dashboard</li>
-  //     </button>
-  //     <button className={isActive==="Orders"?"button1 active":"button1"}  onClick={handleClick}>
-  //       <li id="Orders" className="NavItem">Current Orders</li>
-  //     </button>
-  //     <button className={isActive==="Food Items"?"button1 active":"button1"}  onClick={handleClick}>
-  //       <li id="Food Items" className="NavItem">Food Items</li>
-  //     </button>
-  //     <button className={isActive==="addfood"?"button1 active":"button1"}  onClick={handleClick}>
-  //       <li id="addfood" className="NavItem">Add Food</li>
-  //     </button>
-  //   </ul>
-  //   {option}
-  // </div>
-  // </div>);
 }
 
 export default AdminPanel;
