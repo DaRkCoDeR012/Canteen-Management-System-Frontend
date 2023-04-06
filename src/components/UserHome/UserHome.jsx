@@ -5,16 +5,18 @@ import UserProfile from "../Profile/UserProfile";
 import UserDashBoard from "../UserDashboard/DashBoard";
 import MyOrders from "../Orders/MyOrders";
 import axios from "../../api/axios";
+import useAuth from "../../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./userhome.css";
 
 function UserHome(props) {
   const location = useLocation();
+  const {auth} = useAuth();
   const navigate = useNavigate();
   const [isActive, setIsActive] = React.useState("Menu");
-  const canteen= props.name
-  const username = props.owner
-   const userid = location.state.name[0];
+  const canteen= location.state.name;
+  const userid = auth?.foundUser?._id;
+  const username = auth?.foundUser?.fname +" "+ auth?.foundUser?.lname;
   // console.log(canteen);
   const [option, setOption] = React.useState(<Menu name={canteen} />);
   
@@ -29,7 +31,7 @@ function UserHome(props) {
   function handleClick(event) {
     setIsActive(event.target.id);
     if (event.target.id === "Menu") {
-      setOption(<Menu/>);
+      setOption(<Menu name={canteen}/>);
     } else if (event.target.id === "MyOrders") {
       setOption(<MyOrders id={userid} />);
     }
@@ -44,14 +46,7 @@ function UserHome(props) {
 
   function handleClick2(event) {
     event.preventDefault();
-    navigate("/userdashboard",
-    {
-      state:{
-        name:[
-          username,userid
-      ]
-      }
-    })
+    navigate("/userdashboard")
   }
 
   return (

@@ -1,104 +1,69 @@
-import React from 'react';
-import axios from "../../api/axios"
-// import UpdateUser from '../Update/UpdateUser'
-// import CryptoJS from "crypto-js";
-import { useLocation,useNavigate } from "react-router-dom";
+import React from "react";
+import axios from "../../api/axios";
+import useAuth from "../../hooks/useAuth";
+
 import "./profile.css";
 
 function UserProfile() {
-  const navigate = useNavigate();
- 
-    const location = useLocation();
-    // const [isActive, setIsActive] = React.useState("Dashboard");
-    const user_id = location.state.name[1];
-    // const [option, setOption] = React.useState(<UpdateUser id={user_id}/>);
-    // const canteen_name = location.state.name[2];
-    // const cid = location.state.name[3];
-    const user_name = location.state.name[0];
+  const { auth } = useAuth();
+  const user_id = auth?.foundUser?._id;
+  const user_name = auth?.foundUser?.fname + " " + auth?.foundUser?.lname;
 
+  const [user, setUser] = React.useState([]);
 
-    const [user, setUser] = React.useState([]);
+  React.useEffect(() => {
+    axios.get("/userprofile/" + user_id).then((res) => {
+      const data = res.data[0];
+      setUser(data);
+    });
+  }, []);
 
-    React.useEffect(() => {
-        axios.get("/userprofile/"+user_id)
-        .then((res)=>{
-            const data = res.data[0];
-            // console.log(data);
-            setUser(data);
-        })
-      },[]); 
-
-    function handleClick(event) {
-      navigate("/updateUser",
-      {
-        state:{
-          name:[
-          user_id,user_name,user.lname,user.email,user.password
-        ]}
-      })
-    }
+    // function handleClick(event) {
+    //   navigate("/updateUser")
+    // }
     
   return (
     <div>
-    <div className="col-12 profile"> 
-    <div className="card mb-3 menucard1" style={{ maxWidth: "1040px" }}>
-      <div className="card1 row">
-        {/* <div className="col-md-4 imgdiv">
-          <img src="https://cdn-icons-png.flaticon.com/128/737/737967.png" className="img-fluid rounded-start" alt="..." />
-        </div> */}
-        <div className="col-md-12 cardbod">
-          <div className="card-body">
-            <h3><i class="fa fa-id-card" aria-hidden="true"></i>    Profile</h3><hr/>
-            <table >
-                <tr>
-                    <td>Id:</td>
-                    <td>{user_id}</td>
-                    {/* <td>User Id:</td> */}
-                </tr>
-                <tr>
-                    <td>Name:</td>
-                    <td>{user_name} {user.lname}</td>
-                    {/* <td>User Id:</td> */}
-                </tr>
-                {/* <tr>
-                    <td>Canteen Name:</td>
-                    <td>{user_name}</td> */}
-                    {/* <td>User Id:</td> */}
-                {/* </tr> */}
-                {/* <tr>
-                    <td>Canteen Id:</td>
-                    <td>{cid}</td> */}
-                    {/* <td>User Id:</td> */}
-                {/* </tr> */}
-                <tr>
-                    <td>Email:</td>
-                    <td>{user.email}</td>
-                    {/* <td>User Id:</td> */}
-                </tr>
-                <tr>
-                    <td>Password:</td>
-                    <td className="pass">{user.password}  </td>
-                    <td><a ><i className="fa fa-eye" aria-hidden="true" ></i></a></td>
-                </tr>
-            </table>
-            {/* <h3 className="card-title">User Id: {user_id}</h3>
-            <hr />
-            <h4 className="card-text"> */}
-                {/* bcjjclkn.mc nnkck.c.mnk.nknwmd m wm m.nmq m xkxnk kqndknwmxmmnnknwm mwqnkwqk wqnkdnknxwnklnk ckwlqndkln qwklnkqldnk c necklenklcn  clnkwlfkwnkwk */}
-                {/* User Name: {user_name}
-            </h4>
-            <h4 className="card-text">
-                Canteen Name: {canteen_name}
-            </h4> */}
-            {/* <div className="added"><i onClick={minus} className="fa-solid fa-minus"></i><span>{count}</span><i onClick={add} className="fa-solid fa-plus"></i></div> */}
-            <button className="button1" id="UpdateUser" onClick={handleClick}>Update Profile</button>
+      <div className="col-12 profile">
+        <div className="card mb-3 menucard1" style={{ maxWidth: "1040px" }}>
+          <div className="card1 row">
+            <div className="col-md-12 cardbod">
+              <div className="card-body">
+                <h3>
+                  <i className="fa fa-user-circle" aria-hidden="true"></i>{" "}
+                  Profile
+                </h3>
+                <hr />
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>Id:</td>
+                      <td>{user_id}</td>
+                    </tr>
+                    <tr>
+                      <td>Name:</td>
+                      <td>
+                        {user_name}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Email:</td>
+                      <td>{user.email}</td>
+                    </tr>
+                    <tr>
+                      <td>Password:</td>
+                      <td className="pass">{user.password} </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <button className="button1">Update Profile</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    </div>
-    </div>
-  )
+  );
 }
 
 export default UserProfile;

@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "../../api/axios"
+import useAuth from "../../hooks/useAuth";
 import "./dashboard.css";
 import { useLocation } from "react-router-dom";
 
@@ -7,6 +8,7 @@ const date = new Date().getDate();
 const fulldate = new Date().toLocaleDateString();
 
 function Dashboard() {
+  const {auth} = useAuth();
   const location = useLocation();
   const [time, setTime] = React.useState(new Date().toLocaleTimeString());
   const [orders, setOrder] = React.useState([]);
@@ -17,7 +19,7 @@ function Dashboard() {
     const newtime = new Date().toLocaleTimeString();
     setTime(newtime);
   }
-  const cid = location.state.name[3];
+  const cid = auth?.canteen?._id;
   // console.log(cid);
 
   React.useEffect(() => {

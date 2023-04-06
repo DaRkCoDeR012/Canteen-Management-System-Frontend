@@ -1,13 +1,15 @@
 import React from "react";
 import axios from "../../api/axios"
 import "./fooditem.css";
+import useAuth from "../../hooks/useAuth";
 import { useLocation } from "react-router-dom";
 
 function FoodItem() {
   const [foods, setFoods] = React.useState([]);
+  const {auth} = useAuth();
   const location = useLocation();
-  const canteen_name= location.state.name[2];
-  const cid= location.state.name[3];
+  const canteen_name= auth?.canteen?.canteen_name;
+  const cid= auth?.canteen?._id;
   function removeitem(event) {
     setFoods((prevFood) => {
       const id = event.target.name;

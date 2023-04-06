@@ -1,11 +1,13 @@
 import React from "react";
 import axios from "../../api/axios"
+import useAuth from "../../hooks/useAuth";
 import "./loginstyles.css";
 
 import {useNavigate } from "react-router-dom";
 
-function Login(props) {
+function UserLogin() {
   const navigate = useNavigate();
+  const {setAuth}  = useAuth();
 
   const [user, setUser] = React.useState({
     email: "",
@@ -15,7 +17,6 @@ function Login(props) {
   const [passwordShown, setPasswordShown] = React.useState(false);
   const [formErrors, setFormErrors] = React.useState({});
   const [isValid, setIsValid] = React.useState(true);
-  const isHome = props.isHome;
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -27,45 +28,30 @@ function Login(props) {
     });
   };
 
-  const submit = (event) => {
+  const submit = async(event) => {
     event.preventDefault();
+    try {
     setFormErrors(validate(user));
     if (Object.keys(formErrors).length === 0 && isValid) {
       setIsValid(false);
-      isHome
-        ? axios.post("/login", user).then((res) => {
-            if (res.data.message === "Login Successfull") {
-              localStorage.setItem("usertoken", res.data.tkn);
-              alert(res.data.message);
-              navigate("/userdashboard", {
-                state: {
-                  name: res.data.name,
-                },
-              });
-              window.location.reload();
-            } else {
-              alert(res.data);
-              window.location.reload();
-            }
-          })
-        : axios.post("http://localhost:8080/admin", user).then((res) => {
-            if (res.data.message === "Login Successfull") {
-              localStorage.setItem("admintoken", res.data.tkn);
-              alert(res.data.message);
-              navigate("/adminpanel",{
-              state: {
-                name:  res.data.name
-              }
-            });
-                // console.log();
-              window.location.reload();
-            } else {
-              alert(res.data);
-              window.location.reload();
-            }
-            window.location.reload();
-          });
+      const response = await axios.post("/login", user);
+      if(response?.data?.foundUser){
+      const foundUser = response?.data?.foundUser;
+      const accessToken = response?.data?.accessToken;
+      const role = response?.data?.role;
+      setAuth({foundUser, role, accessToken});
+      console.log(accessToken);
+      response?.data?.role && navigate("/userdashboard");
       setFormErrors({});
+      }
+      else{
+        alert(response?.data);
+        window.location.reload();
+      }
+      }
+    }
+    catch (err){
+      console.log(err);
     }
   };
 
@@ -146,21 +132,27 @@ function Login(props) {
         Sign in
       </button>
       <hr />
+<<<<<<< HEAD:src/components/login/Login.jsx
       {isHome ? 
+=======
+>>>>>>> 3cef26ed5b045219e3b231e169699b02497034fa:src/components/login/UserLogin.jsx
       <button 
       className="w-100 btn btn-lg"
       onClick={register}
       >
         Register
       </button>
+<<<<<<< HEAD:src/components/login/Login.jsx
       :<button 
       className="w-100 btn btn-lg"
       onClick={adminRegister}
       >
         Register
       </button>}
+=======
+>>>>>>> 3cef26ed5b045219e3b231e169699b02497034fa:src/components/login/UserLogin.jsx
     </form>
   );
 }
 
-export default Login;
+export default UserLogin;
