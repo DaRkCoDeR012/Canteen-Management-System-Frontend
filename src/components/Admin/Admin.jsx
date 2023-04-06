@@ -1,5 +1,5 @@
 import React from "react";
-import Login from "../login/Login";
+import AdminLogin from "../login/AdminLogin";
 import "./admin.css";
 
 function Admin() {
@@ -13,7 +13,7 @@ function Admin() {
           </div>
         </div>
         <div className="col-md-8">
-          <Login className="form" isHome={false} />
+          <AdminLogin className="form" />
         </div>
       </div>
     </div>

@@ -6,15 +6,17 @@ import UserProfile from "../Profile/UserProfile";
 import OrderDash from "../Orders/OrderDash";
 import axios from "../../api/axios";
 import { useLocation, useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 import "./userhome.css";
 
 function DashBoard() {
   const location = useLocation();
+  const {auth} = useAuth();
   const navigate = useNavigate();
   const [isActive, setIsActive] = React.useState("Canteen");
   const [option, setOption] = React.useState(<Canteen />);
-  const userid = location.state.name[1];
-  const username = location.state.name[0];
+  const userid = auth?.foundUser?._id;
+  const username = auth?.foundUser?.fname + " " +auth?.foundUser?.lname;
 
   function logout(event) {
     event.preventDefault();
