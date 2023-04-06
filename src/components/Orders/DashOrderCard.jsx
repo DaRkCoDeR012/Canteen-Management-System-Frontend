@@ -1,20 +1,8 @@
 import React from "react";
 import "./orders.css";
-import { useLocation } from "react-router-dom";
 
 
 function DashOrderCard(props) {
-  const location = useLocation();
-  const c_name = location.state.canteen_name;
-  // console.log(c_name);
-  let canteenflag = false;
-  (props.canteen_name===c_name) 
-    
-      ? canteenflag = true : canteenflag = false;
-  
-  //   let adminflag = false;
-  //   localStorage.getItem("admintoken") ? adminflag = true : adminflag = false
-//   if (!canteenflag) {
     
     return (
       <div

@@ -3,11 +3,11 @@ import MenuCard from "./MenuCard";
 import axios from "../../api/axios";
 import { useLocation } from "react-router-dom";
 
-function Menu(){
+function Menu(props){
 
     const location=useLocation();
     const [foods, setFoods] = React.useState([]);
-    const name=location.state.canteen_name;
+    const name = props.name;
     // console.log(name);
     React.useEffect(() => {
         axios.get("/food/"+name)

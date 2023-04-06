@@ -1,6 +1,6 @@
 import React from "react";
 import "./homepage.css"
-import Login from "../login/Login";
+import UserLogin from "../login/UserLogin";
 
 function Homepage() {
   return (
@@ -13,7 +13,7 @@ function Homepage() {
                 </div>
             </div>
             <div className="col-md-8">
-                <Login className="form" isHome={true}/>
+                <UserLogin className="form"/>
             </div>
         </div>
     </div>);
