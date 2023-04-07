@@ -1,6 +1,6 @@
 import React from "react";
-import Menu from "../Menu/Menu";
 import Canteen from "../Menu/Canteen.jsx";
+import useLogout from "../../hooks/useLogout.js";
 import UserProfile from "../Profile/UserProfile";
 import OrderDash from "../Orders/OrderDash";
 import axios from "../../api/axios";
@@ -12,13 +12,13 @@ function DashBoard() {
   const {auth} = useAuth();
   const navigate = useNavigate();
   const [isActive, setIsActive] = React.useState("Canteen");
+  const Logout = useLogout();
   const [option, setOption] = React.useState(<Canteen />);
   const userid = auth?.foundUser?._id;
   const username = auth?.foundUser?.fname + " " +auth?.foundUser?.lname;
 
-  function logout(event) {
-    event.preventDefault();
-    localStorage.clear();
+  const logout = async() => {
+    await Logout();
     axios.delete("/cart");
     navigate("/");
   }

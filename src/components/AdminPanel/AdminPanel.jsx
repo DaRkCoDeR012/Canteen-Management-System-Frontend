@@ -6,21 +6,22 @@ import FoodItem from "../FoodItems/FoodItems";
 import ADDFOOD from "../AddFood/ADDFOOD";
 import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import useLogout1 from "../../hooks/useLogout1";
 import "./adminpan.css";
 
 function AdminPanel(){
 
     const [isclicked,setIsClicked] = React.useState(false);
     const {auth} = useAuth();
+    const Logout = useLogout1()
     const navigate = useNavigate();
     const [isActive, setIsActive] = React.useState("Dashboard");
     const [option, setOption] = React.useState(<Dashboard />);
     const canteen_name = auth?.foundAdmin?.canteen_name;
-    function logout(event){
+    const logout = async() => {
         setIsClicked(true);
         setTimeout(()=>setIsClicked(false),1000);
-        event.preventDefault();
-        localStorage.clear();
+        await Logout();
         navigate("/admin");
     };
     

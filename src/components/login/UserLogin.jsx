@@ -42,7 +42,6 @@ function UserLogin() {
       const accessToken = response?.data?.accessToken;
       const role = response?.data?.role;
       setAuth({foundUser, role, accessToken});
-      console.log(accessToken);
       response?.data?.role && navigate("/userdashboard");
       setFormErrors({});
       }
