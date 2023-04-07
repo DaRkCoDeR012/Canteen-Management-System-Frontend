@@ -6,8 +6,6 @@ function OrderDash(props){
 
     const [orders,setOrders] = React.useState([]);
     const user = props.id;
-    // const canteen_name=""
-
 
     React.useEffect(()=>{
         axios.get("/order/"+user)

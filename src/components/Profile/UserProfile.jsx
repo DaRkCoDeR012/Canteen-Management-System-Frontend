@@ -17,7 +17,7 @@ function UserProfile() {
       setUser(data);
     });
   }, []);
-
+    
   return (
     <div>
       <div className="col-12 profile">

@@ -9,7 +9,10 @@ function CanteenCard(props) {
 
   function gotomenu(event){
     navigate("/userhome",
-    {state:{name: props.name}}
+    {state:{
+      name: props.name,
+      cid : props.canteen_id
+    }}
     );
   }
 
@@ -26,10 +29,6 @@ function CanteenCard(props) {
             <h4 className="card-text">
                 Owner:  {props.owner}
             </h4>
-            {/* <h4 className="card-text">
-                Type: {props.type} {props.category}
-            </h4> */}
-            {/* <div className="added"><i onClick={minus} className="fa-solid fa-minus"></i><span>{count}</span><i onClick={add} className="fa-solid fa-plus"></i></div> */}
             <a className={
                       isActive === "Menu" ? "nav-link" : "nav-link"
                     } 

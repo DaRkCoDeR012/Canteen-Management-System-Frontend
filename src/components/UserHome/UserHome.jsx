@@ -15,10 +15,10 @@ function UserHome(props) {
   const navigate = useNavigate();
   const [isActive, setIsActive] = React.useState("Menu");
   const canteen= location.state.name;
+  const cid= location.state.cid;
   const userid = auth?.foundUser?._id;
   const username = auth?.foundUser?.fname +" "+ auth?.foundUser?.lname;
-  // console.log(canteen);
-  const [option, setOption] = React.useState(<Menu name={canteen} />);
+  const [option, setOption] = React.useState(<Menu name={canteen} cid={cid}/>);
   
 
   function logout(event) {
@@ -31,16 +31,16 @@ function UserHome(props) {
   function handleClick(event) {
     setIsActive(event.target.id);
     if (event.target.id === "Menu") {
-      setOption(<Menu name={canteen}/>);
+      setOption(<Menu name={canteen} cid={cid}/>);
     } else if (event.target.id === "MyOrders") {
-      setOption(<MyOrders id={userid} />);
+      setOption(<MyOrders id={userid} cid={cid}/>);
     }
     else if (event.target.id === "Profile") {
       setOption(<UserProfile />)
     }else if (event.target.id === "DashBoard") {
       setOption(<UserDashBoard />);
     } else if (event.target.id === "Cart") {
-      setOption(<Cart id={userid} username={username}/>);
+      setOption(<Cart id={userid} username={username} cid={cid}/>);
     }
   }
 
@@ -58,9 +58,6 @@ function UserHome(props) {
                       isActive === "Profile" ? "nav-link active" : "navbar-brand navname" } onClick={handleClick}>
               {username}
             </a>
-            {/* <a className="navbar-brand navname" href="/userhome">
-              {canteen}
-            </a> */}
             <button
               className="navbar-toggler"
               type="button"

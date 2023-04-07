@@ -33,7 +33,6 @@ function DashOrderCard(props) {
         </div>
       </div>
     );
-//   }
 }
 
 export default DashOrderCard;

@@ -20,8 +20,7 @@ function Canteen(){
                 key={index} 
                 name={canteen.canteen_name}
                 owner={canteen.name}
-                // type={canteen.type}
-                // category={canteen.category}
+                canteen_id={canteen._id}
             />)
             })}</div>
     );   

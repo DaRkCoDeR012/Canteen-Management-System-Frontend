@@ -97,24 +97,33 @@ function UserLogin() {
         <p>{formErrors.email}</p>
         <label htmlFor="floatingInput">Email address</label>
       </div>
-      <div className="form-floating form-group">
+      <div className=" form-floating">
         <input
           onChange={handleChange}
           name="password"
           type={passwordShown ? "text" : "password"}
-          className="form-control col-4"
+          className="form-control "
           id="floatingPassword"
           placeholder="Password"
           value={user.password}
-        /><a className="btn btn2" onClick={togglePassword}>
-        <i className="fa fa-eye" aria-hidden="true" ></i>
-      </a>
-        <p>{formErrors.password}</p>
-        
+        /><p>{formErrors.password}</p>
         <label htmlFor="floatingPassword" >Password</label>
-        
       </div>
-      <br />
+      <div className="row justify-content-end">
+    <div className="col-6">
+        <a className="btn2 " onClick={togglePassword}>
+          <p>
+        {passwordShown ? <i className="fa fa-eye-slash"aria-hidden="true" ></i> :<i className="fa fa-eye" aria-hidden="true" ></i> }      {passwordShown ? "Hide password" : "Show password"}       </p>
+      </a>
+      </div>
+      </div>
+        
+        {/*  <p>{formErrors.password}</p> */}
+        
+        {/* <label htmlFor="floatingPassword" >Forgot Password</label>  */}
+        
+      {/* </div> */}
+      {/* <br /> */}
       <button className="w-100 btn btn-lg" onClick={submit}>
         Sign in
       </button>
