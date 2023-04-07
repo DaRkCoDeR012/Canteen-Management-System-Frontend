@@ -34,7 +34,9 @@ function UserLogin() {
     setFormErrors(validate(user));
     if (Object.keys(formErrors).length === 0 && isValid) {
       setIsValid(false);
-      const response = await axios.post("/login", user);
+      const response = await axios.post("/login", user,{
+        withCredentials: true
+      });
       if(response?.data?.foundUser){
       const foundUser = response?.data?.foundUser;
       const accessToken = response?.data?.accessToken;

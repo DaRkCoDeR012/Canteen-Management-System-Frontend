@@ -34,7 +34,9 @@ const AdminLogin = () => {
     setFormErrors(validate(admin));
     if (Object.keys(formErrors).length === 0 && isValid) {
     setIsValid(false);
-      const response = await axios.post("/admin", admin)
+      const response = await axios.post("/admin", admin,{
+        withCredentials: true
+      });
       if(response?.data?.admin){
       const foundAdmin = response?.data?.admin;
       const accessToken = response?.data?.accessToken;
