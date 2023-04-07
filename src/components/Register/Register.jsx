@@ -154,8 +154,8 @@ function Register() {
           <p>{formErrors.confirmpass}</p>
           <label htmlFor="floatingPassword">Confirm Password</label>
         </div>
-        <div class="row justify-content-end">
-    <div class="col-6">
+        <div className="row justify-content-end">
+    <div className="col-6">
         <a className="btn2 " onClick={togglePassword}>
           <p>
         {passwordShown ? <i className="fa fa-eye-slash"aria-hidden="true" ></i> :<i className="fa fa-eye" aria-hidden="true" ></i> }      {passwordShown ? "Hide password" : "Show password"}       </p>
