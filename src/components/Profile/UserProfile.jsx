@@ -17,10 +17,6 @@ function UserProfile() {
       setUser(data);
     });
   }, []);
-
-    // function handleClick(event) {
-    //   navigate("/updateUser")
-    // }
     
   return (
     <div>

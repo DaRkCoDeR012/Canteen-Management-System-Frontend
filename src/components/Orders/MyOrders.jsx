@@ -6,11 +6,10 @@ function MyOrders(props){
 
     const [orders,setOrders] = React.useState([]);
     const user = props.id;
-    // const canteen_name=""
-
+    const cid=props.cid;
 
     React.useEffect(()=>{
-        axios.get("/order/"+user)
+        axios.get("/order/"+user+"/"+cid)
         .then((res)=>{setOrders(res.data)});
     },[]);
 

@@ -76,17 +76,13 @@ function UserLogin() {
   const register = ()=>{
     navigate("/register");
   }
-  const adminRegister = ()=>{
-    navigate("/adminRegister");
-  }
- const change = <i className="fa fa-eye-slash" aria-hidden="true" ></i>
+
   const togglePassword = () => {
     setPasswordShown(!passwordShown);
   };
   return (
     <form className="login">
       <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
-        {/* <div className="form-group"> */}
 
       <div className="form-floating">
         <input
@@ -113,8 +109,8 @@ function UserLogin() {
         /><p>{formErrors.password}</p>
         <label htmlFor="floatingPassword" >Password</label>
       </div>
-      <div class="row justify-content-end">
-    <div class="col-6">
+      <div className="row justify-content-end">
+    <div className="col-6">
         <a className="btn2 " onClick={togglePassword}>
           <p>
         {passwordShown ? <i className="fa fa-eye-slash"aria-hidden="true" ></i> :<i className="fa fa-eye" aria-hidden="true" ></i> }      {passwordShown ? "Hide password" : "Show password"}       </p>
@@ -122,35 +118,22 @@ function UserLogin() {
       </div>
       </div>
         
-        {/* <p>{formErrors.password}</p>
+        {/*  <p>{formErrors.password}</p> */}
         
-        <label htmlFor="floatingPassword" >Password</label> */}
+        {/* <label htmlFor="floatingPassword" >Forgot Password</label>  */}
         
       {/* </div> */}
-      <br />
+      {/* <br /> */}
       <button className="w-100 btn btn-lg" onClick={submit}>
         Sign in
       </button>
       <hr />
-<<<<<<< HEAD:src/components/login/Login.jsx
-      {isHome ? 
-=======
->>>>>>> 3cef26ed5b045219e3b231e169699b02497034fa:src/components/login/UserLogin.jsx
       <button 
       className="w-100 btn btn-lg"
       onClick={register}
       >
         Register
       </button>
-<<<<<<< HEAD:src/components/login/Login.jsx
-      :<button 
-      className="w-100 btn btn-lg"
-      onClick={adminRegister}
-      >
-        Register
-      </button>}
-=======
->>>>>>> 3cef26ed5b045219e3b231e169699b02497034fa:src/components/login/UserLogin.jsx
     </form>
   );
 }

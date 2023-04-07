@@ -1,18 +1,14 @@
 import React from "react";
 import Menu from "../Menu/Menu";
 import Canteen from "../Menu/Canteen.jsx";
-import Cart from "../Cart/Cart";
-
-// import UpdateUser from '../Update/UpdateUser'
 import UserProfile from "../Profile/UserProfile";
 import OrderDash from "../Orders/OrderDash";
 import axios from "../../api/axios";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import "./userhome.css";
 
 function DashBoard() {
-  const location = useLocation();
   const {auth} = useAuth();
   const navigate = useNavigate();
   const [isActive, setIsActive] = React.useState("Canteen");
@@ -36,8 +32,6 @@ function DashBoard() {
       setOption(<UserProfile />)
     } else if (event.target.id === "MyOrders") {
       setOption(<OrderDash id={userid} />);
-    // } else if (event.target.id === "Cart") {
-    //   setOption(<Cart id={userid} username={username}/>);
     }
   }
 
@@ -85,17 +79,6 @@ function DashBoard() {
                     My Orders
                   </a>
                 </li>
-                {/* <li className="nav-item">
-                  <a
-                    className={
-                      isActive === "Cart" ? "nav-link active" : "nav-link"
-                    }
-                    id="Cart"
-                    onClick={handleClick}
-                  >
-                    Cart
-                  </a>
-                </li> */}
                 <li className="nav-item">
                   <a className="nav-link" onClick={logout}>
                     Logout

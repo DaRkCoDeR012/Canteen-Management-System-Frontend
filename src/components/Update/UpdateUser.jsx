@@ -1,16 +1,11 @@
 import React from 'react';
-import axios from "../../api/axios"
-// import CryptoJS from "crypto-js";
-import { useLocation,useNavigate } from "react-router-dom";
+import axios from "../../api/axios";
+import { useLocation } from "react-router-dom";
 import "../Profile/profile.css";
 
 function UpdateUser() {
  
     const location = useLocation();
-    // const [isActive, setIsActive] = React.useState("Dashboard");
-    // const [option, setOption] = React.useState(<UpdateUser id={user_id}/>);
-    // const canteen_name = location.state.name[2];
-    // const cid = location.state.name[3];
     const user_id = location.state.name[0];
     const user_name = location.state.name[1];
     const user_email = location.state.name[4];

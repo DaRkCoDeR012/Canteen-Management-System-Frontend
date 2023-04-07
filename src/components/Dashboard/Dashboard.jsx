@@ -2,14 +2,11 @@ import React from "react";
 import axios from "../../api/axios"
 import useAuth from "../../hooks/useAuth";
 import "./dashboard.css";
-import { useLocation } from "react-router-dom";
 
-const date = new Date().getDate();
 const fulldate = new Date().toLocaleDateString();
 
 function Dashboard() {
   const {auth} = useAuth();
-  const location = useLocation();
   const [time, setTime] = React.useState(new Date().toLocaleTimeString());
   const [orders, setOrder] = React.useState([]);
   const [revenue, setRevenue] = React.useState(0);
@@ -20,13 +17,11 @@ function Dashboard() {
     setTime(newtime);
   }
   const cid = auth?.canteen?._id;
-  // console.log(cid);
 
   React.useEffect(() => {
     axios.get("/allorder/"+cid).then((res) => {
       setOrder(res.data);
     });
-    // console.log(orders);
     axios
       .get("/gettotal/"+cid)
       .then((res) => setRevenue(res.data));

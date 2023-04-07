@@ -6,14 +6,12 @@ import useAuth from "../../hooks/useAuth";
 function Order(){
     const {auth} = useAuth();
     const cid = auth?.canteen?._id;
-    // console.log(name)
     const [orders,setOrders] = React.useState([]);
 
     React.useEffect(()=>{
         axios.get("/allorder/"+cid)
         .then((res)=>{setOrders(res.data)}
         );
-        // console.log(orders)
     },[]);
 
     return(<div className="Menu">

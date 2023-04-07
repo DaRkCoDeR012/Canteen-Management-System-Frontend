@@ -70,13 +70,6 @@ function Register() {
       errors.password = "Password is required!";
       setIsValid(false);
     }
-    // if (!admin.confirmpass) {
-    //   errors.confirmpass = "Confirm Password is required!";
-    //   setIsValid(false);
-    // } else if (admin.password !== admin.confirmpass) {
-    //   errors.confirmpass = "Password and Confirm Password should be same";
-    //   setIsValid(false);
-    // }
     return errors;
   };
   const togglePassword = () => {
@@ -147,19 +140,6 @@ function Register() {
                 </a>
             </div>
         </div>
-        {/* <div className="form-floating">
-          <input
-            onChange={handleChange}
-            name="confirmpass"
-            type="password"
-            className="form-control"
-            id="floatingPassword"
-            placeholder="Confirm Password"
-            value={admin.confirmpass}
-          />
-          <p>{formErrors.confirmpass}</p>
-          <label htmlFor="floatingPassword">Confirm Password</label>
-        </div> */}
         <button className="w-100 btn btn-lg registerbtn" onClick={submit}>
           Register
         </button>
