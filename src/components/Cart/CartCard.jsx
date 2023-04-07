@@ -21,10 +21,9 @@ function CartCard(props) {
         <li className="list-group-item">{props.type} {props.category}</li>
         <li className="list-group-item">Quantity: {props.quantity}</li>
         <li className="list-group-item">Total: ₹ {props.total}</li>
-        {/* <li className="list-group-item"> {props.canteen_name}</li> */}
       </ul>
-      <div class="card-body">
-      <a onClick={handleRemove} id={props.id} class="btn btn-primary">Remove</a>
+      <div className="card-body">
+      <a onClick={handleRemove} id={props.id} className="btn btn-primary">Remove <i className="fa fa-trash" aria-hidden="true"></i></a>
       </div>
     </div>
   );

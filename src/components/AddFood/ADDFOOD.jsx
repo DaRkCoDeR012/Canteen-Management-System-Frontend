@@ -2,13 +2,10 @@ import React from "react";
 import axios from "../../api/axios"
 import "./addfood.css";
 import useAuth from "../../hooks/useAuth";
-import { useLocation } from "react-router-dom";
 
 function ADDFOOD() {
-  const location = useLocation();
   const {auth} = useAuth()
   const cid = auth?.canteen._id;
-  // console.log(cid);
   const [food, setFood] = React.useState({
     name: "",
     type: "Veg",
@@ -102,33 +99,6 @@ function ADDFOOD() {
       </button>
     </form>
   );
-
-  // return(<div className="Menu">
-  //     <div className="addfood">
-  //     <h1 >ADD FOOD ITEM</h1>
-  //     <input onChange={handleChange} type="text" name="name" placeholder="Food Name" value={food.name} />
-  //     <p>{formErrors.name}</p>
-  //     <input onChange={handleChange} type="text" name="price" placeholder="Price" value={food.price} />
-  //     <p>{formErrors.price}</p>
-  //     <div className="option">
-  //     <select onChange={handleChange} name="type" value={food.type}>
-  //         <option value="Veg">Veg</option>
-  //         <option value="Non-Veg">Non Veg</option>
-  //         <option value="Cold">Cold</option>
-  //         <option value="Hot">Hot</option>
-  //     </select>
-  //     <select onChange={handleChange} name="category" value={food.category}>
-  //         <option value="Starter">Starter</option>
-  //         <option value="Main-Course">Main Course</option>
-  //         <option value="Breads">Breads</option>
-  //         <option value="Fast Food">Fast Food</option>
-  //         <option value="Beverage">Beverage</option>
-  //         <option value="Dessert">Dessert</option>
-  //     </select>
-  //     </div>
-  //     <button onClick={handleClick}>Add</button>
-  //     </div>
-  // </div>);
 }
 
 export default ADDFOOD;

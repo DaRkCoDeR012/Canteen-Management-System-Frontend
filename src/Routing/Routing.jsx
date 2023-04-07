@@ -1,6 +1,7 @@
 import React from "react";
 import Homepage from "../components/Homepage/Homepage";
 import Register from "../components/Register/Register";
+import AdminRegister from "../components/Register/AdminRegister";
 import UserDashBoard from "../components/UserDashboard/DashBoard";
 import UserHome from "../components/UserHome/UserHome";
 import Admin from "../components/Admin/Admin";
@@ -23,6 +24,7 @@ function Routing() {
               <Route exact path="/" element={<Homepage />} />
               <Route exact path="/register" element={<Register />} />
               <Route exact path="/admin" element={<Admin />} />
+              <Route exact path="/adminregister" element={<AdminRegister />} />
 
               <Route element={<PersistLogin />}>
                 <Route element={<RequireAuth1 />}>

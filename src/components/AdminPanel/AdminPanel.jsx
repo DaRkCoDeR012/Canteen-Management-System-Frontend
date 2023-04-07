@@ -15,9 +15,7 @@ function AdminPanel(){
     const navigate = useNavigate();
     const [isActive, setIsActive] = React.useState("Dashboard");
     const [option, setOption] = React.useState(<Dashboard />);
-    // const canteen_id = location.state.name[3];
     const canteen_name = auth?.foundAdmin?.canteen_name;
-    // console.log(location.state.name);
     function logout(event){
         setIsClicked(true);
         setTimeout(()=>setIsClicked(false),1000);

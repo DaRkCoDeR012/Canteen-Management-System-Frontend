@@ -27,6 +27,9 @@ const AdminLogin = () => {
       };
     });
   };
+  const register = ()=>{
+    navigate("/adminregister");
+  }
 
   const submit = async(event) => {
     event.preventDefault();
@@ -105,16 +108,30 @@ const AdminLogin = () => {
           placeholder="Password"
           value={admin.password}
         /><a className="btn btn1" onClick={togglePassword}>
-        <i className="fa fa-eye" aria-hidden="true" ></i>
       </a>
         <p>{formErrors.password}</p>
         
         <label htmlFor="floatingPassword" >Password</label>
         
       </div>
+      <div className="row justify-content-end">
+    <div className="col-6">
+        <a className="btn2 " onClick={togglePassword}>
+          <p>
+        {passwordShown ? <i className="fa fa-eye-slash"aria-hidden="true" ></i> :<i className="fa fa-eye" aria-hidden="true" ></i> }      {passwordShown ? "Hide password" : "Show password"}       </p>
+      </a>
+      </div>
+      </div>
       <br />
       <button className="w-100 btn btn-lg" onClick={submit}>
         Sign in
+      </button>
+      <hr />
+      <button 
+      className="w-100 btn btn-lg"
+      onClick={register}
+      >
+        Register
       </button>
     </form>
   );
