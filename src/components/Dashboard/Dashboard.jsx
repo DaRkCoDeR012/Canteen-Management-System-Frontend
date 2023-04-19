@@ -1,12 +1,12 @@
 import React from "react";
-import axios from "../../api/axios"
+import axios from "../../api/axios";
 import useAuth from "../../hooks/useAuth";
 import "./dashboard.css";
 
 const fulldate = new Date().toLocaleDateString();
 
 function Dashboard() {
-  const {auth} = useAuth();
+  const { auth } = useAuth();
   const [time, setTime] = React.useState(new Date().toLocaleTimeString());
   const [orders, setOrder] = React.useState([]);
   const [revenue, setRevenue] = React.useState(0);
@@ -17,14 +17,11 @@ function Dashboard() {
     setTime(newtime);
   }
   const cid = auth?.canteen?._id;
-
   React.useEffect(() => {
-    axios.get("/allorder/"+cid).then((res) => {
+    axios.get("/allorder/" + cid).then((res) => {
       setOrder(res.data);
     });
-    axios
-      .get("/gettotal/"+cid)
-      .then((res) => setRevenue(res.data));
+    axios.get("/gettotal/" + cid).then((res) => setRevenue(res.data));
   }, []);
 
   return (
@@ -63,7 +60,7 @@ function Dashboard() {
       </div>
       <div className="col-12">
         <hr />
-            <h1 className="tablehead">Orders</h1>
+        <h1 className="tablehead">Orders</h1>
         <hr />
         <table className="table table-light ordertable">
           <thead>
@@ -74,12 +71,14 @@ function Dashboard() {
             </tr>
           </thead>
           <tbody>
-            {orders.map((order,index)=>{
-                return(<tr key={index}>
-                        <th scope="row">{index+1}</th>
-                        <td>{order._id}</td>
-                        <td>{order.total}</td>
-                      </tr>);
+            {orders.map((order, index) => {
+              return (
+                <tr key={index}>
+                  <th scope="row">{index + 1}</th>
+                  <td>{order._id}</td>
+                  <td>{order.total}</td>
+                </tr>
+              );
             })}
           </tbody>
         </table>

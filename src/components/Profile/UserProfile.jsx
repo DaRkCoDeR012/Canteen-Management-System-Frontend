@@ -1,23 +1,13 @@
 import React from "react";
-import axios from "../../api/axios";
-import useAuth from "../../hooks/useAuth";
+import Update from '../Update/UpdateUser.jsx'
+import Profile1 from './Profile1'
 
 import "./profile.css";
 
 function UserProfile() {
-  const { auth } = useAuth();
-  const user_id = auth?.foundUser?._id;
-  const user_name = auth?.foundUser?.fname + " " + auth?.foundUser?.lname;
+  
+  const [isActive, setIsActive] = React.useState("Update");
 
-  const [user, setUser] = React.useState([]);
-
-  React.useEffect(() => {
-    axios.get("/userprofile/" + user_id).then((res) => {
-      const data = res.data[0];
-      setUser(data);
-    });
-  }, []);
-    
   return (
     <div>
       <div className="col-12 profile">
@@ -30,29 +20,10 @@ function UserProfile() {
                   Profile
                 </h3>
                 <hr />
-                <table>
-                  <tbody>
-                    <tr>
-                      <td>Id:</td>
-                      <td>{user_id}</td>
-                    </tr>
-                    <tr>
-                      <td>Name:</td>
-                      <td>
-                        {user_name}
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Email:</td>
-                      <td>{user.email}</td>
-                    </tr>
-                    <tr>
-                      <td>Password:</td>
-                      <td className="pass">{user.password} </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <button className="button1">Update Profile</button>
+                <button className="nav-link "><Profile1/></button>
+                <button className={
+                      isActive === "Update" ? "nav-link" : "nav-link"
+                    }  id="Update" className="button1" ><Update/></button>
               </div>
             </div>
           </div>
@@ -63,3 +34,4 @@ function UserProfile() {
 }
 
 export default UserProfile;
+

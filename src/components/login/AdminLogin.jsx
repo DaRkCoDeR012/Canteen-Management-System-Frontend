@@ -1,15 +1,15 @@
 import React from "react";
-import axios from "../../api/axios"
+import axios from "../../api/axios";
 import useAuth from "../../hooks/useAuth";
 import "./loginstyles.css";
 
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const AdminLogin = () => {
-    const navigate = useNavigate();
-    const {setAuth}  = useAuth();
+  const navigate = useNavigate();
+  const { setAuth } = useAuth();
 
-    const [admin, setAdmin] = React.useState({
+  const [admin, setAdmin] = React.useState({
     email: "",
     password: "",
   });
@@ -27,35 +27,33 @@ const AdminLogin = () => {
       };
     });
   };
-  const register = ()=>{
+  const register = () => {
     navigate("/adminregister");
-  }
+  };
 
-  const submit = async(event) => {
+  const submit = async (event) => {
     event.preventDefault();
     try {
-    setFormErrors(validate(admin));
-    if (Object.keys(formErrors).length === 0 && isValid) {
-    setIsValid(false);
-      const response = await axios.post("/admin", admin,{
-        withCredentials: true
-      });
-      if(response?.data?.admin){
-      const foundAdmin = response?.data?.admin;
-      const accessToken = response?.data?.accessToken;
-      const canteen = response?.data?.canteen[0];
-      const role = response?.data?.role;
-      setAuth({foundAdmin, role, accessToken, canteen});
-      response?.data?.role && navigate("/adminpanel");
-      setFormErrors({});
+      setFormErrors(validate(admin));
+      if (Object.keys(formErrors).length === 0 && isValid) {
+        setIsValid(false);
+        const response = await axios.post("/admin", admin, {
+          withCredentials: true,
+        });
+        if (response?.data?.admin) {
+          const foundAdmin = response?.data?.admin;
+          const accessToken = response?.data?.accessToken;
+          const canteen = response?.data?.canteen;
+          const role = response?.data?.role;
+          setAuth({ foundAdmin, role, accessToken, canteen });
+          response?.data?.role && navigate("/adminpanel");
+          setFormErrors({});
+        } else {
+          alert(response?.data);
+          window.location.reload();
+        }
       }
-      else{
-        alert(response?.data);
-        window.location.reload();
-      }
-      }
-    }
-    catch (err){
+    } catch (err) {
       console.log(err);
     }
   };
@@ -88,13 +86,13 @@ const AdminLogin = () => {
       <div className="form-floating">
         <input
           onChange={handleChange}
-          name="email" 
+          name="email"
           type="text"
           className="form-control"
           id="floatingInput"
           placeholder="name@example.com"
           value={admin.email}
-          />
+        />
         <p>{formErrors.email}</p>
         <label htmlFor="floatingInput">Email address</label>
       </div>
@@ -107,34 +105,35 @@ const AdminLogin = () => {
           id="floatingPassword"
           placeholder="Password"
           value={admin.password}
-        /><a className="btn btn1" onClick={togglePassword}>
-      </a>
+        />
+        <a className="btn btn1" onClick={togglePassword}></a>
         <p>{formErrors.password}</p>
-        
-        <label htmlFor="floatingPassword" >Password</label>
-        
+
+        <label htmlFor="floatingPassword">Password</label>
       </div>
       <div className="row justify-content-end">
-    <div className="col-6">
-        <a className="btn2 " onClick={togglePassword}>
-          <p>
-        {passwordShown ? <i className="fa fa-eye-slash"aria-hidden="true" ></i> :<i className="fa fa-eye" aria-hidden="true" ></i> }      {passwordShown ? "Hide password" : "Show password"}       </p>
-      </a>
+        <div className="col-6">
+          <a className="btn2 " onClick={togglePassword}>
+            <p>
+              {passwordShown ? (
+                <i className="fa fa-eye-slash" aria-hidden="true"></i>
+              ) : (
+                <i className="fa fa-eye" aria-hidden="true"></i>
+              )}{" "}
+              {passwordShown ? "Hide password" : "Show password"}
+            </p>
+          </a>
+        </div>
       </div>
-      </div>
-      <br />
       <button className="w-100 btn btn-lg" onClick={submit}>
         Sign in
       </button>
       <hr />
-      <button 
-      className="w-100 btn btn-lg"
-      onClick={register}
-      >
+      <button className="w-100 btn btn-lg" onClick={register}>
         Register
       </button>
     </form>
   );
-}
+};
 
 export default AdminLogin;

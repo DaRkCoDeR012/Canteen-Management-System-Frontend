@@ -1,13 +1,13 @@
 import React from "react";
-import axios from "../../api/axios"
+import axios from "../../api/axios";
 import useAuth from "../../hooks/useAuth";
 import "./loginstyles.css";
 
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function UserLogin() {
   const navigate = useNavigate();
-  const {setAuth}  = useAuth();
+  const { setAuth } = useAuth();
 
   const [user, setUser] = React.useState({
     email: "",
@@ -28,30 +28,28 @@ function UserLogin() {
     });
   };
 
-  const submit = async(event) => {
+  const submit = async (event) => {
     event.preventDefault();
     try {
-    setFormErrors(validate(user));
-    if (Object.keys(formErrors).length === 0 && isValid) {
-      setIsValid(false);
-      const response = await axios.post("/login", user,{
-        withCredentials: true
-      });
-      if(response?.data?.foundUser){
-      const foundUser = response?.data?.foundUser;
-      const accessToken = response?.data?.accessToken;
-      const role = response?.data?.role;
-      setAuth({foundUser, role, accessToken});
-      response?.data?.role && navigate("/userdashboard");
-      setFormErrors({});
+      setFormErrors(validate(user));
+      if (Object.keys(formErrors).length === 0 && isValid) {
+        setIsValid(false);
+        const response = await axios.post("/login", user, {
+          withCredentials: true,
+        });
+        if (response?.data?.foundUser) {
+          const foundUser = response?.data?.foundUser;
+          const accessToken = response?.data?.accessToken;
+          const role = response?.data?.role;
+          setAuth({ foundUser, role, accessToken });
+          response?.data?.role && navigate("/userdashboard");
+          setFormErrors({});
+        } else {
+          alert(response?.data);
+          window.location.reload();
+        }
       }
-      else{
-        alert(response?.data);
-        window.location.reload();
-      }
-      }
-    }
-    catch (err){
+    } catch (err) {
       console.log(err);
     }
   };
@@ -74,9 +72,9 @@ function UserLogin() {
     return errors;
   };
 
-  const register = ()=>{
+  const register = () => {
     navigate("/register");
-  }
+  };
 
   const togglePassword = () => {
     setPasswordShown(!passwordShown);
@@ -88,13 +86,13 @@ function UserLogin() {
       <div className="form-floating">
         <input
           onChange={handleChange}
-          name="email" 
+          name="email"
           type="text"
           className="form-control"
           id="floatingInput"
           placeholder="name@example.com"
           value={user.email}
-          />
+        />
         <p>{formErrors.email}</p>
         <label htmlFor="floatingInput">Email address</label>
       </div>
@@ -107,32 +105,29 @@ function UserLogin() {
           id="floatingPassword"
           placeholder="Password"
           value={user.password}
-        /><p>{formErrors.password}</p>
-        <label htmlFor="floatingPassword" >Password</label>
+        />
+        <p>{formErrors.password}</p>
+        <label htmlFor="floatingPassword">Password</label>
       </div>
       <div className="row justify-content-end">
-    <div className="col-6">
-        <a className="btn2 " onClick={togglePassword}>
-          <p>
-        {passwordShown ? <i className="fa fa-eye-slash"aria-hidden="true" ></i> :<i className="fa fa-eye" aria-hidden="true" ></i> }      {passwordShown ? "Hide password" : "Show password"}       </p>
-      </a>
+        <div className="col-6">
+          <a className="btn2 " onClick={togglePassword}>
+            <p>
+              {passwordShown ? (
+                <i className="fa fa-eye-slash" aria-hidden="true"></i>
+              ) : (
+                <i className="fa fa-eye" aria-hidden="true"></i>
+              )}{" "}
+              {passwordShown ? "Hide password" : "Show password"}
+            </p>
+          </a>
+        </div>
       </div>
-      </div>
-        
-        {/*  <p>{formErrors.password}</p> */}
-        
-        {/* <label htmlFor="floatingPassword" >Forgot Password</label>  */}
-        
-      {/* </div> */}
-      {/* <br /> */}
       <button className="w-100 btn btn-lg" onClick={submit}>
         Sign in
       </button>
       <hr />
-      <button 
-      className="w-100 btn btn-lg"
-      onClick={register}
-      >
+      <button className="w-100 btn btn-lg" onClick={register}>
         Register
       </button>
     </form>

@@ -9,27 +9,26 @@ import useAuth from "../../hooks/useAuth";
 import "./userhome.css";
 
 function DashBoard() {
-  const {auth} = useAuth();
+  const { auth } = useAuth();
   const navigate = useNavigate();
   const [isActive, setIsActive] = React.useState("Canteen");
   const Logout = useLogout();
   const [option, setOption] = React.useState(<Canteen />);
   const userid = auth?.foundUser?._id;
-  const username = auth?.foundUser?.fname + " " +auth?.foundUser?.lname;
+  const username = auth?.foundUser?.name;
 
-  const logout = async() => {
+  const logout = async () => {
     await Logout();
     axios.delete("/cart");
     navigate("/");
-  }
+  };
 
   function handleClick(event) {
     setIsActive(event.target.id);
     if (event.target.id === "Canteen") {
-      setOption(<Canteen/>);
-    }
-    else if (event.target.id === "Profile") {
-      setOption(<UserProfile />)
+      setOption(<Canteen />);
+    } else if (event.target.id === "Profile") {
+      setOption(<UserProfile />);
     } else if (event.target.id === "MyOrders") {
       setOption(<OrderDash id={userid} />);
     }
@@ -37,12 +36,19 @@ function DashBoard() {
 
   return (
     <div className="row">
-      <div className="col-12">
-        <nav className="navbar navbar-expand-lg bg-body-tertiary usernav">
+      <div className="col-12 sticky-top button1">
+        <nav className="navbar navbar-expand-lg bg-body-secondary usernav">
           <div className="container-fluid">
-            <a id="Profile" className={
-                      isActive === "Profile" ? "navbar-brand navname active" : "navbar-brand navname" } onClick={handleClick}>
-              <i className="fa fa-user" aria-hidden="true"></i>  {username}
+            <a
+              id="Profile"
+              className={
+                isActive === "Profile"
+                  ? "navbar-brand navname active"
+                  : "navbar-brand navname"
+              }
+              onClick={handleClick}
+            >
+              <i className="fa fa-user" aria-hidden="true"></i> {username}
             </a>
             <button
               className="navbar-toggler"
@@ -89,7 +95,9 @@ function DashBoard() {
           </div>
         </nav>
       </div>
-      <div className="col-12 userhomebg">{option}</div>
+      <div className="plm">
+        <div className="col-12 right-section dash userhomebg">{option}</div>
+      </div>
     </div>
   );
 }

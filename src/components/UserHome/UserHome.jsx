@@ -1,11 +1,13 @@
 import React from "react";
 import Menu from "../Menu/Menu";
+import Canteen1 from "../Menu/Canteen1";
 import Cart from "../Cart/Cart";
 import UserProfile from "../Profile/UserProfile";
 import UserDashBoard from "../UserDashboard/DashBoard";
 import MyOrders from "../Orders/MyOrders";
 import axios from "../../api/axios";
 import useAuth from "../../hooks/useAuth";
+import Offcanvas from 'react-bootstrap/Offcanvas';
 import { useLocation, useNavigate } from "react-router-dom";
 import "./userhome.css";
 
@@ -17,10 +19,13 @@ function UserHome(props) {
   const canteen= location.state.name;
   const cid= location.state.cid;
   const userid = auth?.foundUser?._id;
-  const username = auth?.foundUser?.fname +" "+ auth?.foundUser?.lname;
+  const username = auth?.foundUser?.name;
   const [option, setOption] = React.useState(<Menu name={canteen} cid={cid}/>);
   
+  const [show, setShow] = React.useState(false);
 
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   function logout(event) {
     event.preventDefault();
     localStorage.clear();
@@ -39,8 +44,6 @@ function UserHome(props) {
       setOption(<UserProfile />)
     }else if (event.target.id === "DashBoard") {
       setOption(<UserDashBoard />);
-    } else if (event.target.id === "Cart") {
-      setOption(<Cart id={userid} username={username} cid={cid}/>);
     }
   }
 
@@ -51,13 +54,14 @@ function UserHome(props) {
 
   return (
     <div className="row">
-      <div className="col-12">
-        <nav className="navbar navbar-expand-lg bg-body-tertiary usernav">
+      <div className="col-12 sticky-top button1 ">
+        <nav className="navbar shadow-lg navbar-expand-lg bg-body-secondary usernav">
           <div className="container-fluid">
             <a id="Profile" className={
                       isActive === "Profile" ? "nav-link active" : "navbar-brand navname" } onClick={handleClick}>
-              {username}
+              <i className="fa fa-user" aria-hidden="true"></i>{" "+username}
             </a>
+            <div className="userhomename"><a className="nav-link" onClick={handleClick2}><h2>{canteen}</h2></a></div>
             <button
               className="navbar-toggler"
               type="button"
@@ -69,6 +73,7 @@ function UserHome(props) {
             >
               <span className="navbar-toggler-icon"></span>
             </button>
+            
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav ms-auto">
                 <li className="nav-item">
@@ -99,7 +104,7 @@ function UserHome(props) {
                       isActive === "Cart" ? "nav-link active" : "nav-link"
                     }
                     id="Cart"
-                    onClick={handleClick}
+                    onClick={handleShow}
                   >
                     Cart
                   </a>
@@ -114,8 +119,19 @@ function UserHome(props) {
           </div>
         </nav>
       </div>
-      <div className="userhomebg"><a className="nav-link" onClick={handleClick2}><h2>{canteen}</h2></a></div>
-      <div className="col-12 userhomebg">{option}</div>
+      <Offcanvas show={show} onHide={handleClose} backdrop="static" placement="end">
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title>Cart</Offcanvas.Title>
+        </Offcanvas.Header><hr/>
+        <Offcanvas.Body>
+            <div className="Cart"><Cart id={userid} username={username} cid={cid}/></div>
+        </Offcanvas.Body>
+
+      </Offcanvas>
+      <div className="plm">
+        <div className=" col-2 h-100 userhomebg left-section bg-dark" ><Canteen1 name={canteen} cid={cid}/></div>
+        <div className="col-10  right-section userhomebg" >{option}</div>
+      </div>
     </div>
   );
 }

@@ -1,31 +1,77 @@
 .usernav {
- padding: 2% 5%;
- font-size: 1.5rem;
+  padding: 2% 5%;
+  font-size: 1.5rem;
+}
+
+.userhomename {
+  margin-left: 22%;
+}
+
+.left-section {
+  overflow-y: scroll;
+  scroll-behavior: auto;
+  max-height: 595px;
+  position: relative;
+}
+.right-section {
+    overflow-y: scroll;
+    scroll-behavior: auto;
+    max-height: 595px;
+    position: relative;
+  }
+.button1 {
+  box-shadow: 0px 8px 16px 0 rgba(0, 0, 0, 0.4),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.offcanvas-body{
+  overflow: hidden;
+}
+.row .scroll{
+  overflow-y: scroll;
+  max-height: 470px;
 }
 
 .navname {
-    font-size: 1.8rem;
+  font-size: 1.8rem;
 }
 
-.usernav li{
-    margin: 0 10px;
+.usernav li {
+  margin: 0 10px;
 }
-nav{
-    font-family: cursive;
+nav {
+  font-family: "Times New Roman", Times, serif;
 }
-.usernav li:hover{
-    cursor: pointer;
+.usernav li:hover {
+  cursor: pointer;
 }
-h2{
-    text-align: center;
-    font-weight: bolder;
-    font-family: cursive;
+h2 {
+  text-align: center;
+  font-weight: bolder;
+  font-family: "Times New Roman", Times, serif;
 }
-.userhomebg{
-    background-color: #ffffff;
-    background-image: url("https://www.transparenttextures.com/patterns/black-thread.png");
+.userhomebg {
+  background-color: #ffffff;
+  background-image: url("https://www.transparenttextures.com/patterns/black-thread.png");
 }
 
-.active{
-    font-weight: bolder;
+.active {
+  font-weight: bolder;
+}
+
+.row .plm {
+  display: inline-flex;
+}
+
+
+.left-section::-webkit-scrollbar {
+  display: none;
+}
+.right-section::-webkit-scrollbar {
+    display: none;
+  }
+  .row .scroll::-webkit-scrollbar {
+    display: none;
+  }
+html::-webkit-scrollbar {
+  display: none;
 }

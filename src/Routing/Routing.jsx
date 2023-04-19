@@ -5,6 +5,7 @@ import AdminRegister from "../components/Register/AdminRegister";
 import UserDashBoard from "../components/UserDashboard/DashBoard";
 import UserHome from "../components/UserHome/UserHome";
 import Admin from "../components/Admin/Admin";
+import UpdateUser from "../components/Update/UpdateUser";
 import AdminPanel from "../components/AdminPanel/AdminPanel";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import RequireAuth1 from "./RequireAuth1";
@@ -34,6 +35,7 @@ function Routing() {
                     path="/userdashboard"
                     element={<UserDashBoard />}
                   />
+                  <Route exact path="/userupdate" element={<UpdateUser />} />
                 </Route>
               </Route>
 

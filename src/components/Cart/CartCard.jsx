@@ -8,12 +8,7 @@ function CartCard(props) {
   }
 
   return (
-    <div className="card cartcard" style={{ width: "18rem" }}>
-      <img
-        src="https://cdn-icons-png.flaticon.com/128/737/737967.png"
-        className="card-img-top"
-        alt="..."
-      />
+    <div className="card cartcard" >
       <div className="card-body">
         <h5 className="card-title">{props.name}</h5>
       </div>

@@ -6,9 +6,12 @@ import "./register.css";
 function Register() {
   const history = useNavigate();
   const [user, setUser] = React.useState({
-    fname: "",
-    lname: "",
+    name: "",
+    phone: "",
     email: "",
+    role: "",
+    department: "",
+    college_id: "",
     password: "",
     confirmpass: "",
   });
@@ -41,9 +44,12 @@ function Register() {
         }
       });
       setUser({
-        fname: "",
-        lname: "",
+        name: "",
+        phone: "",
         email: "",
+        role: "",
+        department: "",
+        college_id: "",
         password: "",
         confirmpass: "",
       });
@@ -53,12 +59,12 @@ function Register() {
   const validate = (user) => {
     const errors = {};
     const regex = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
-    if (!user.fname) {
-      errors.fname = "First Name is required!";
+    if (!user.name) {
+      errors.fname = "Name is required!";
       setIsValid(false);
     }
-    if (!user.lname) {
-      errors.lname = "Last Name is required!";
+    if (!user.phone) {
+      errors.lname = "Phone no is required!";
       setIsValid(false);
     }
     if (!user.email) {
@@ -72,11 +78,23 @@ function Register() {
       errors.password = "Password is required!";
       setIsValid(false);
     }
+    if (!user.role) {
+      errors.role = "Role is required!";
+      setIsValid(false);
+    }
+    if (!user.department) {
+      errors.department = "Department is required!";
+      setIsValid(false);
+    }
+    if (!user.college_id) {
+      errors.college_id = "College id is required!";
+      setIsValid(false);
+    }
     if (!user.confirmpass) {
-      errors.confirmpass = "Confirm Password is required!";
+      errors.confirmpass = "Confirm password is required!";
       setIsValid(false);
     } else if (user.password !== user.confirmpass) {
-      errors.confirmpass = "Password and Confirm Password should be same";
+      errors.confirmpass = "Password and Confirm password should be same";
       setIsValid(false);
     }
     return errors;
@@ -92,28 +110,15 @@ function Register() {
         <div className="form-floating">
           <input
             onChange={handleChange}
-            name="fname"
+            name="name"
             type="text"
             className="form-control"
             id="floatingInput"
-            placeholder="First Name"
+            placeholder="Name"
             value={user.fname}
           />
           <p>{formErrors.fname}</p>
-          <label htmlFor="floatingInput">First Name</label>
-        </div>
-        <div className="form-floating">
-          <input
-            onChange={handleChange}
-            name="lname"
-            type="text"
-            className="form-control"
-            id="floatingInput"
-            placeholder="Last Name"
-            value={user.lname}
-          />
-          <p>{formErrors.lname}</p>
-          <label htmlFor="floatingInput">Last Name</label>
+          <label htmlFor="floatingInput">Name</label>
         </div>
         <div className="form-floating">
           <input
@@ -131,15 +136,67 @@ function Register() {
         <div className="form-floating">
           <input
             onChange={handleChange}
-            name="password"
-            type="password"
+            name="phone"
+            type="number"
             className="form-control"
-            id="floatingPassword"
-            placeholder="Password"
+            id="floatingInput"
+            placeholder="phone no"
+            value={user.phone}
+          />
+          <p>{formErrors.phone}</p>
+          <label htmlFor="floatingInput">Phone no</label>
+        </div>
+        <div className="form-floating">
+          <input
+            onChange={handleChange}
+            name="role"
+            type="text"
+            className="form-control"
+            id="floatingrole"
+            placeholder="role"
+            value={user.role}
+          />
+          <p>{formErrors.role}</p>
+          <label htmlFor="floatingcollege_id">role</label>
+        </div>
+        <div className="form-floating">
+          <input
+            onChange={handleChange}
+            name="department"
+            type="department"
+            className="form-control"
+            id="floatingdepartment"
+            placeholder="department"
+            value={user.department}
+          />
+          <p>{formErrors.department}</p>
+          <label htmlFor="floatingdepartment">Department</label>
+        </div>
+        <div className="form-floating">
+          <input
+            onChange={handleChange}
+            name="college_id"
+            type="college_id"
+            className="form-control"
+            id="floatingcollege_id"
+            placeholder="college_id"
+            value={user.college_id}
+          />
+          <p>{formErrors.college_id}</p>
+          <label htmlFor="floatingcollege_id">college_id</label>
+        </div>
+        <div className="form-floating">
+          <input
+            onChange={handleChange}
+            name="password"
+            type={passwordShown ? "text" : "password"}
+            className="form-control"
+            id="floatingpassword"
+            placeholder="password"
             value={user.password}
           />
           <p>{formErrors.password}</p>
-          <label htmlFor="floatingPassword">Password</label>
+          <label htmlFor="floatingpassword">Password</label>
         </div>
         <div className="form-floating">
           <input
@@ -147,12 +204,12 @@ function Register() {
             name="confirmpass"
             type={passwordShown ? "text" : "password"}
             className="form-control"
-            id="floatingPassword"
-            placeholder="Confirm Password"
+            id="floatingpassword"
+            placeholder="confirm password"
             value={user.confirmpass}
           />
           <p>{formErrors.confirmpass}</p>
-          <label htmlFor="floatingPassword">Confirm Password</label>
+          <label htmlFor="floatingcollege_id">Confirm password</label>
         </div>
         <div className="row justify-content-end">
     <div className="col-6">

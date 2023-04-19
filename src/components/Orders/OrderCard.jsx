@@ -9,7 +9,6 @@ function OrderCard(props) {
         className={"card border-success mb-3 ordercard"}
         style={{ maxWidth: "18rem" }}
       >
-        
         <div className="card-header">
           <h3>{props.index}. {!props.user && props.username}</h3>
         </div>
@@ -26,10 +25,7 @@ function OrderCard(props) {
           <hr />
           <h5 className="card-title"> Price: ₹ {props.total}</h5>
           <hr />
-          <h5 className="card-title">Order Time: {props.time}</h5>
-          
-        <hr /><h5 className="card-title">Canteen Name: {props.canteen_name}</h5>
-          
+          <h5 className="card-title">Order Time: {props.time}</h5>          
         </div>
       </div>
   );
