@@ -1,102 +1,158 @@
-import React from 'react';
+import React from "react";
+import useAuth from "../../hooks/useAuth";
 import axios from "../../api/axios";
-import { useLocation } from "react-router-dom";
 import "../Profile/profile.css";
+import { Modal, Button } from "react-bootstrap";
 
-function UpdateUser() {
- 
-    const location = useLocation();
-    const user_id = location.state.name[0];
-    const user_name = location.state.name[1];
-    const user_email = location.state.name[4];
-    const user_password = location.state.name[3];
-    // console.log(data);
-    
-    // const [user, setUser] = React.useState([]);
-    // setUser(data);
-    
-    // React.useEffect(() => {
-    //     axios.get("/userprofile/"+user_id)
-    //     .then((res)=>{
-    //         const data = res.data[0];
-    //         setUser(data);
-    //     })
-    //   },[]); 
+function UpdateUser(props) {
+  const { auth } = useAuth();
 
-    // function handleClick(event) {
-    //   if(event.target.id === "UpdateUser"){
-    //     setOption(<UpdateUser />);
-    //   }
-    // }
-    
+  const [show, setShow] = React.useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const user_id = auth?.foundUser?._id;
+  const admin_id = auth?.foundAdmin?._id;
+  const [formErrors, setFormErrors] = React.useState({});
+  const [isValid, setIsValid] = React.useState(true);
+  const [user, setUser] = React.useState({
+    npassword: "",
+    cpassword: "",
+    password: "",
+  });
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setUser((prevUser) => {
+      return {
+        ...prevUser,
+        [name]: value,
+      };
+    });
+  };
+
+  const handleUpdate = (event) => {
+    event.preventDefault();
+    setFormErrors(validate(user));
+    if (Object.keys(formErrors).length === 0 && isValid) {
+      setIsValid(false);
+      if (auth?.foundAdmin) {
+        axios.post("/updateAdmin/" + admin_id, user).then((res) => {
+          if (res) {
+            if (res.data === "User not found") {
+              alert(res.data);
+            } else {
+              alert(res.data);
+              window.location.reload();
+            }
+          }
+        });
+      }else if (auth?.foundUser) {
+        axios.post("/updateUser/" + user_id, user).then((res) => {
+          if (res) {
+            if (res.data === "User not found") {
+              alert(res.data);
+            } else {
+              alert(res.data)
+              window.location.reload();
+            }
+          }
+        });
+      }
+    }
+  };
+
+  const validate = (user) => {
+    const errors = {};
+
+    if (!user.password || !user.npassword || !user.cpassword) {
+      errors.password = "Password is required!";
+      setIsValid(false);
+    } else if (user.npassword !== user.cpassword) {
+      errors.password = "New password and confirm password does not match";
+      setIsValid(false);
+    }else if (user.password === user.npassword) {
+      errors.password = "Password and new password cannot be same";
+      setIsValid(false);
+    }
+    return errors;
+  };
+
   return (
     <div>
-    <div className="col-12 profile"> 
-    <div className="card mb-3 menucard1" style={{ maxWidth: "1040px" }}>
-      <div className="card1 row">
-        {/* <div className="col-md-4 imgdiv">
-          <img src="https://cdn-icons-png.flaticon.com/128/737/737967.png" className="img-fluid rounded-start" alt="..." />
-        </div> */}
-        <div className="col-md-12 cardbod">
-          <div className="card-body">
-            <h3><i class="fa fa-id-card" aria-hidden="true"></i>    Profile</h3><hr/>
-            <table >
-                <tr>
-                    <td>Id:</td>
-                    <td>{user_id}</td>
-                    {/* <td>User Id:</td> */}
-                </tr>
-                <tr>
-                    <td>Name:</td>
-                    <td>
-                        <input type="text" placeHolder={user_name}/>
-                        {/* {user_name} {user.lname} */}
-                    </td>
-                    {/* <td>User Id:</td> */}
-                </tr>
-                {/* <tr>
-                    <td>Canteen Name:</td>
-                    <td>{user_name}</td> */}
-                    {/* <td>User Id:</td> */}
-                {/* </tr> */}
-                {/* <tr>
-                    <td>Canteen Id:</td>
-                    <td>{cid}</td> */}
-                    {/* <td>User Id:</td> */}
-                {/* </tr> */}
-                <tr>
-                    <td>Email:</td>
-                    <td>
-                        <input type="text" placeHolder={user_email}/>
-                    </td>
-                    {/* <td>User Id:</td> */}
-                </tr>
-                <tr>
-                    <td>Password:</td>
-                    <td className="pass">
-                        <input type="text" placeHolder={user_password}/> 
-                     </td>
-                    {/* <td><a ><i className="fa fa-eye" aria-hidden="true" ></i></a></td> */}
-                </tr>
-            </table>
-            {/* <h3 className="card-title">User Id: {user_id}</h3>
-            <hr />
-            <h4 className="card-text"> */}
-                {/* bcjjclkn.mc nnkck.c.mnk.nknwmd m wm m.nmq m xkxnk kqndknwmxmmnnknwm mwqnkwqk wqnkdnknxwnklnk ckwlqndkln qwklnkqldnk c necklenklcn  clnkwlfkwnkwk */}
-                {/* User Name: {user_name}
-            </h4>
-            <h4 className="card-text">
-                Canteen Name: {canteen_name}
-            </h4> */}
-            {/* <div className="added"><i onClick={minus} className="fa-solid fa-minus"></i><span>{count}</span><i onClick={add} className="fa-solid fa-plus"></i></div> */}
-            <button className="button1">Update Profile</button>
-          </div>
-        </div>
+      <div variant="" onClick={handleShow}>
+        Update Password
       </div>
+
+      <Modal show={show} onHide={handleClose} backdrop="static" centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Update Password</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="col-12 profile">
+            <div className="card2 menucard2">
+              <div className="card1 row">
+                <div className="col cardbod">
+                  <div className="card-body">
+                    <table>
+                      <tbody>
+                        <tr>
+                          <td>Id:</td>
+                          <td>{user_id || admin_id}</td>
+                        </tr>
+                        <tr>
+                          <td>Old Password:</td>
+                          <td>
+                            <input
+                              type="password"
+                              name="password"
+                              onChange={handleChange}
+                              placeholder="Enter old password"
+                            />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>New Password:</td>
+                          <td>
+                            <input
+                              type="password"
+                              name="npassword"
+                              onChange={handleChange}
+                              placeholder="Enter new password"
+                            />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Confirm Password:</td>
+                          <td className="pass">
+                            <input
+                              type="password"
+                              name="cpassword"
+                              onChange={handleChange}
+                              placeholder="Confirm Password"
+                            />
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleUpdate}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
-    </div>
-    </div>
-  )
+  );
 }
 
 export default UpdateUser;

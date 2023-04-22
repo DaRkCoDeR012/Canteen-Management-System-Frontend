@@ -1,5 +1,5 @@
 .registerform input{
-    margin: 10px 0;
+    margin: 5px 0;
 }
 
 .registerbtn{
@@ -7,5 +7,10 @@
 }
 
 .register {
-    padding: 5% 65% 10% 13%;
+    padding: 4% 65% 10% 13%;
+    height: auto;
+}
+
+.parent{
+    height: 100vh;
 }

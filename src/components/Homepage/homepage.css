@@ -1,13 +1,8 @@
 .parent{
     background-image: url("https://images.pexels.com/photos/1028599/pexels-photo-1028599.jpeg?auto=compress&cs=tinysrgb&w=800");
-    background-size: 100%;
+    background-size: 90%;
     background-repeat: no-repeat;
-    height: 100vh;
-}
-
-.row{
-    position: relative;
-    top: 30%;
+    height: 90vh;
 }
 
 .brand{

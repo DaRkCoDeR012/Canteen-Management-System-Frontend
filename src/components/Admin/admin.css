@@ -5,7 +5,7 @@
     height: 100vh;
 }
 
-.row{
+.container-fluid .row{
     position: relative;
     top: 30%;
 }

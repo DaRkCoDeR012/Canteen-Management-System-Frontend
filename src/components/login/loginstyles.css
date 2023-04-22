@@ -1,37 +1,36 @@
-.login{
-    background-color: rgba(255, 251, 245,0.8);
-    border-radius: 7px;
-    padding: 2%;
-    margin: 0 30%;
+.login {
+  background-color: rgba(255, 251, 245, 0.8);
+  border-radius: 7px;
+  padding: 2%;
+  margin: 0 30%;
 }
 
-.btn-lg:hover{
-    background-color: #537FE7;
+.btn-lg:hover {
+  background-color: #537fe7;
 }
-input{
-    border-radius: 0px;
+input {
+  border-radius: 0px;
 }
 
-a.btn2{
+a.btn2 {
   display: flex;
   align-items: flex-end;
   justify-items: safe;
 }
-i{
+i {
   height: 14px;
   padding-left: 10px;
   margin-bottom: 4px;
 }
 
-  .btn2{
-     display: block;
-    box-sizing: content-box;
-    flex-direction: column;
-    justify-content: right;
-    text-decoration: none; 
-    color: black;
-  }
-  .btn.hover{
-    background-color: #537FE7;
-  }
-  
+.btn2 {
+  display: block;
+  box-sizing: content-box;
+  flex-direction: column;
+  justify-content: right;
+  text-decoration: none;
+  color: black;
+}
+.btn.hover {
+  background-color: #537fe7;
+}

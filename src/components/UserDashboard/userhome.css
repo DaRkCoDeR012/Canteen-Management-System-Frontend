@@ -1,17 +1,16 @@
 .usernav {
+background-attachment: fixed;
  padding: 2% 5%;
  font-size: 1.5rem;
 }
-
 .navname {
     font-size: 1.8rem;
 }
-
 .usernav li{
     margin: 0 10px;
 }
 nav{
-    font-family: cursive;
+    font-family: 'Times New Roman', Times, serif;
 }
 .usernav li:hover{
     cursor: pointer;
@@ -25,4 +24,7 @@ nav{
 .active{
     font-weight: bolder;
     font-size: 1.5rem;
+}
+.row footer{
+    position: relative;
 }

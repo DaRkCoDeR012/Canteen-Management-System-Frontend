@@ -1,6 +1,7 @@
 .cartcard{
-    margin: 20px;
+    margin: 5px;
     display: inline-block;
+    width: 170px;
 }
 
 .cartcard img{
@@ -9,14 +10,30 @@
     margin: 10px 0 10px 40px;
 }
 
-.order-btn {
-    margin: 0.5% 30% 2% 30%;
-}
 .order-total{
     text-align: center;
     background-color: green;
-    margin: 1% 30% 0 30%;
     padding: 0 5px;
     border-radius: 5px;
     color: #fff;
+}
+.scroll{
+    border-radius: 5px;
+    padding-left: 15px;
+    background-color: rgb(208, 204, 204);
+}
+.foot{
+    position: sticky;
+    background-color: #fff;
+    z-index: 5001;
+    bottom: 0px;
+    height: 102px;
+}
+.foot hr{
+    width: 100%;
+    border: 1px solid black;
+}
+.row hr{
+    position: sticky;
+    bottom: 103px;
 }

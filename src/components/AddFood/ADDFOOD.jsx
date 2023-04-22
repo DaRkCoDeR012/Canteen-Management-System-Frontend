@@ -5,7 +5,7 @@ import useAuth from "../../hooks/useAuth";
 
 function ADDFOOD() {
   const {auth} = useAuth()
-  const cid = auth?.canteen._id;
+  const cid = auth?.canteen?._id;
   const [food, setFood] = React.useState({
     name: "",
     type: "Veg",
@@ -19,8 +19,8 @@ function ADDFOOD() {
     setFormErrors(validate(food));
     if (Object.keys(formErrors).length === 0 && isValid) {
       setIsValid(false);
-      axios.post("/food/"+ cid, food).then((res) => {
-        window.location.reload();
+      axios.post("/food/"+ cid, food,{
+        withCredentials: true
       });
     }
   }
@@ -94,7 +94,7 @@ function ADDFOOD() {
         <option value="Beverage">Beverage</option>
         <option value="Dessert">Dessert</option>
       </select><p>{formErrors.category}</p>
-      <button className="w-100 btn btn-lg btn-primary" onClick={handleClick}>
+      <button type="submit" className="w-100 btn btn-lg btn-primary" onClick={handleClick}>
         Add
       </button>
     </form>
