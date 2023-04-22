@@ -124,7 +124,7 @@ function UserHome(props) {
           <Offcanvas.Title>Cart</Offcanvas.Title>
         </Offcanvas.Header><hr/>
         <Offcanvas.Body>
-            <div className="Cart"><Cart id={userid} username={username} cid={cid}/></div>
+            <div className="Cart"><Cart id={userid} username={username} cid={cid} canteen={canteen}/></div>
         </Offcanvas.Body>
 
       </Offcanvas>

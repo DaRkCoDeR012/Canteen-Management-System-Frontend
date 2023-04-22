@@ -6,6 +6,7 @@ function Cart(props) {
   const [cart, setCart] = React.useState([]);
   let canteen_name = "";
   const cid = props.cid;
+  const canteen = props.canteen;
   let orderTotal = 0;
   React.useEffect(() => {
     axios.get("/cart").then((res) => {
@@ -51,25 +52,28 @@ function Cart(props) {
   return (
     <div className="row">
       <div className="scroll">
-        {cart.map((item, index) => {
-          const total = item.price * item.quantity;
-          orderTotal = orderTotal + total;
+        {
+        cart.map((item, index) => {
           canteen_name = item.canteen_name;
-          return (
-            <CartCard
-              key={index}
-              index={index}
-              id={item._id}
-              name={item.name}
-              price={item.price}
-              type={item.type}
-              category={item.category}
-              quantity={item.quantity}
-              total={total}
-              canteen_name={item.canteen_name}
-              remove={remove}
-            />
-          );
+          if (canteen===canteen_name) {
+            const total = item.price * item.quantity;
+            orderTotal = orderTotal + total;
+            return (
+              <CartCard
+                key={index}
+                index={index}
+                id={item._id}
+                name={item.name}
+                price={item.price}
+                type={item.type}
+                category={item.category}
+                quantity={item.quantity}
+                total={total}
+                canteen_name={item.canteen_name}
+                remove={remove}
+              />
+            );
+          }
         })}
       </div>
       {/* <hr />     */}
