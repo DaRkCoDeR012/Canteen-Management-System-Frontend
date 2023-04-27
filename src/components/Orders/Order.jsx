@@ -15,16 +15,18 @@ function Order(){
     },[]);
 
     return(<div className="Menu">
-        {orders.map((order,index)=>{
+        {orders.slice(0).reverse().map((order,index)=>{
             return(<OrderCardAdmin
             username={order.username}
             key={index}
+            id = {order._id}
             user={false}
             index={index+1}
             cart={order.cart}
             time = {order.ordertime}
             total = {order.total}
             canteen_name = {order.canteen_name}
+            status = {order.status}
         />)
         })}
         

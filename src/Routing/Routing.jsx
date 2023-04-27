@@ -13,6 +13,7 @@ import Layout from "../components/Layout";
 import { AuthProvider } from "../context/AuthProvider";
 import PersistLogin from "../components/PersistLogin";
 import PersistLogin1 from "../components/PersistentLogin1";
+import CanteenHome from "../components/CanteenHome/CanteenHome";
 
 function Routing() {
   return (
@@ -34,6 +35,7 @@ function Routing() {
                     path="/userdashboard"
                     element={<UserDashBoard />}
                   />
+                  <Route exact path='/userhome/:cname' element={<CanteenHome />} />
                 </Route>
               </Route>
 

@@ -1,3 +1,19 @@
 .addfood {
     padding: 5% 25%;
+    /* display: flex;
+    direction: row;
+    justify-content: space-evenly; */
+}
+.imagefood{
+    width: 40%;
+}
+#file-upload{
+    display:none;
+}
+
+.imgdiv1{
+    margin: 4rem 5rem 0 0;
+    height: 140px;
+    width: 200px;
+    background-color: #fff;
 }

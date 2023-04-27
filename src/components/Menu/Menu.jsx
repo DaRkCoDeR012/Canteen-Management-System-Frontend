@@ -1,17 +1,18 @@
 import React from "react";
 import MenuCard from "./MenuCard";
-import axios from "../../api/axios";
+import useAuth from "../../hooks/useAuth";
 
 function Menu(props){
 
-    const [foods, setFoods] = React.useState([]);
+    // const [foods, setFoods] = React.useState([]);
     const name = props.name;
-    React.useEffect(() => {
-        axios.get("/food/"+name)
-        .then((res)=>{
-            setFoods(res.data);
-        })
-      },[]);
+    const {auth} = useAuth()
+    const canteens = auth?.canteen
+    const canteen = canteens.filter(canteen => {
+        return canteen.canteen_name === name;
+    })
+    console.log(canteen)
+    const foods = canteen[0].fooditems
 
     return(<div>
         {foods.map((food,index)=>{
@@ -22,6 +23,7 @@ function Menu(props){
                 type={food.type}
                 category={food.category}
                 canteen_name={name}
+                image = {food.image}
             />)
             })}</div>
     );   

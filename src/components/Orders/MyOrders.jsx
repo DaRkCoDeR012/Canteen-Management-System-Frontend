@@ -16,7 +16,7 @@ function MyOrders(props){
 
 
     return (<div className="Menu">
-        {orders.map((order,index) => {
+        {orders.slice(0).reverse().map((order,index) => {
            return( <OrderCard
             key={index}
             user={true}
@@ -25,6 +25,7 @@ function MyOrders(props){
             time = {order.ordertime}
             total = {order.total}
             canteen_name = {order.canteen_name}
+            status = {order.status}
         />)
         })}
         

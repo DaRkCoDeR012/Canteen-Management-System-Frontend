@@ -36,8 +36,8 @@ function DashBoard() {
 
   return (
     <div className="row">
-      <div className="col-12 sticky-top button1">
-        <nav className="navbar navbar-expand-lg bg-body-secondary usernav">
+      <div className="col-12 sticky-top usernavb">
+        <nav className="navbar navbar-expand-lg usernav">
           <div className="container-fluid">
             <a
               id="Profile"

@@ -8,6 +8,7 @@ function MenuCard(props) {
     const [added, setAdded] = React.useState(false);
     const [count, setCount] = React.useState(0);
     const userid = auth?.foundUser?._id;
+    const baseurl = `http://localhost:8080/uploads/${props.image}`
   const cart = {
     name: props.name,
     type: props.type,
@@ -39,28 +40,28 @@ function MenuCard(props) {
   }
 
   return (
-    <div className="card mb-3 menucard3" >
+    <div className="card mb-4 bg-light menucard3" >
       <div className="row1 g-0">
         <div className="col-12 imgdiv">
-          <img src="https://cdn-icons-png.flaticon.com/128/737/737967.png" className="img-fluid rounded-start" alt="..." />
+          <img src={props.image ? baseurl :"https://cdn-icons-png.flaticon.com/128/737/737967.png"} className="img-fluid rounded-start" alt="..." style={{width:"200px", height:"140px"}} />
         </div>
         <div className="name">
           <hr />
           <h3 className="card-title">{props.name}</h3>
         </div>
-        <div className="d-flex cardbod">
-          <div className="card-body col-6">
-            <h5 className="card-text">
-                {props.type} {props.category}
-            </h5>
-            <h5 className="card-text">
-                Price: ₹ {props.price}
-            </h5>
-          </div>
-          <div className="col-6">
-            <div className="added"><i onClick={minus} className="fa-solid fa-minus"></i><span>{count}</span><i onClick={add} className="fa-solid fa-plus"></i></div>
-            <button className="btn btn-success" onClick={addToCart}>Add To Cart</button>
-            </div>
+        <div className="d-flex justify-content-center">
+          <h5 className="col-12 d-flex justify-content-center">
+            {props.type} {props.category}
+          </h5>
+        </div>
+        <div className="d-flex justify-content-center">
+          <h5 className="card-text">
+            Price: ₹ {props.price}
+          </h5>
+        </div>
+        <div className="d-flex justify-content-center" style={{borderTop:"solid grey 1px", marginTop:"15%",position:"bottom",  paddingTop:"6px"}}>
+          <div className="added"><i onClick={minus} className="fa-solid fa-minus"></i><span>{count}</span><i onClick={add} className="fa-solid fa-plus"></i></div>
+          <button className="col-6 btn btn-success" onClick={addToCart}>Add To Cart</button>
         </div>
       </div>
     </div>

@@ -1,18 +1,12 @@
 import React from "react";
 import CanteenCard from "./CanteenCard";
-import axios from "../../api/axios";
+import useAuth from '../../hooks/useAuth';
 
 function Canteen(){
 
+    const { auth } = useAuth();
 
-    const [canteens, setCanteens] = React.useState([]);
-
-    React.useEffect(() => {
-        axios.get("/canteen")
-        .then((res)=>{
-            setCanteens(res.data);
-        })
-      },[]);
+    const canteens = auth?.canteen
 
     return(<div>
         {canteens.map((canteen,index)=>{

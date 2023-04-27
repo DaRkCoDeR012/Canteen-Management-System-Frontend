@@ -50,8 +50,7 @@ h2 {
   font-family: "Times New Roman", Times, serif;
 }
 .userhomebg {
-  background-color: #ffffff;
-  background-image: url("https://www.transparenttextures.com/patterns/black-thread.png");
+  background-color: #F1F6F9;
 }
 
 .active {
@@ -74,4 +73,8 @@ h2 {
   }
 html::-webkit-scrollbar {
   display: none;
+}
+
+.usernavb{
+  background-color: #957777;
 }
