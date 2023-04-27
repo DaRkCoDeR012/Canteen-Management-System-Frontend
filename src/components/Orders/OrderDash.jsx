@@ -22,6 +22,7 @@ function OrderDash(props){
             time = {order.ordertime}
             total = {order.total}
             canteen_name = {order.canteen_name}
+            status = {order.status}
         />)
         })}
         

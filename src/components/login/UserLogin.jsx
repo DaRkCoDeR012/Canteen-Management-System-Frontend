@@ -41,7 +41,8 @@ function UserLogin() {
           const foundUser = response?.data?.foundUser;
           const accessToken = response?.data?.accessToken;
           const role = response?.data?.role;
-          setAuth({ foundUser, role, accessToken });
+          const canteen = response?.data?.canteen;
+          setAuth({ foundUser, role, accessToken, canteen });
           response?.data?.role && navigate("/userdashboard");
           setFormErrors({});
         } else {

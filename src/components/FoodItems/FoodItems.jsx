@@ -4,30 +4,27 @@ import "./fooditem.css";
 import useAuth from "../../hooks/useAuth";
 
 function FoodItem() {
-  const [foods, setFoods] = React.useState([]);
   const { auth } = useAuth();
+  const [foods,setFoods] = React.useState(auth?.canteen?.fooditems)
   const canteen_name = auth?.canteen?.canteen_name;
   const cid = auth?.canteen?._id;
   function removeitem(event) {
-    setFoods((prevFood) => {
-      const id = event.target.name;
-      return prevFood.filter((foodItem, index) => {
-        return index !== id;
-      });
-    });
+    console.log(event.target)
     axios
-      .delete("/food/" + cid + "/" + event.target.id)
-      .then(window.location.reload());
+      .delete("/food/" + cid + "/" + event.target.id).then((res)=>{
+        auth.canteen = res.data
+        setFoods(auth.canteen.fooditems)
+      })
   }
 
-  React.useEffect(() => {
-    axios.get("/food/" + canteen_name).then((res) => {
-      setFoods(res.data);
-    });
-  }, []);
+  // React.useEffect(() => {
+  //   axios.get("/food/" + canteen_name).then((res) => {
+  //     setFoods(res.data);
+  //   });
+  // }, []);
 
   return (
-    <table className="table table-light fooditem">
+    <table className="table table-light fooditem" style={{marginTop:"30px"}}>
       <thead>
         <tr>
           <th scope="col">S.No</th>
@@ -49,12 +46,11 @@ function FoodItem() {
               <td scope="row">{food.category}</td>
               <td scope="row">
                 <button
-                  className="btn btn-light"
+                  className="btn btn-light fa fa-trash"
                   name={index}
                   id={food._id}
                   onClick={removeitem}
                 >
-                  <i className="fa fa-trash" aria-hidden="true"></i>
                 </button>
               </td>
             </tr>

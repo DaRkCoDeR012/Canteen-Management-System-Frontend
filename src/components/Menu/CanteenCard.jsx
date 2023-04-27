@@ -6,14 +6,9 @@ function CanteenCard(props) {
     const navigate = useNavigate();
     const [isActive, setIsActive] = React.useState("Menu");
   
-
+const name = props.name;
   function gotomenu(event){
-    navigate("/userhome",
-    {state:{
-      name: props.name,
-      cid : props.canteen_id
-    }}
-    );
+    navigate(`/userhome/${name}`);
   }
 
   return (

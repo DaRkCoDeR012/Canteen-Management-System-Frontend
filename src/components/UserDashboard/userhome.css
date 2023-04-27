@@ -18,13 +18,22 @@ nav{
 
 .userhomebg{
     background-color: #ffffff;
-    background-image: url("https://www.transparenttextures.com/patterns/black-thread.png");
 }
 
 .active{
     font-weight: bolder;
     font-size: 1.5rem;
 }
-.row footer{
-    position: relative;
+.kkk{
+    border:solid 1px #9BA4B5;
+    border-bottom: none;
+}
+
+.buttonx:hover {
+    background-color: black;
+}
+
+.ba {
+    background-color: black;
+    color: #fff;
 }

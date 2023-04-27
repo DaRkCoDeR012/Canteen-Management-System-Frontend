@@ -41,8 +41,8 @@ function AdminPanel() {
 
   return (
     <div className="row">
-      <div className="col-12 sticky-top button1">
-        <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <div className="col-12 sticky-top" style={{backgroundColor:"#A7727D", color:"#fff"}}>
+        <nav className="navbar navbar-dark navbar-expand-lg ">
           <div className="container-fluid">
             <a
               className={
@@ -53,7 +53,7 @@ function AdminPanel() {
               id="Profile"
               onClick={handleClick}
             >
-              <i className="fa fa-user"></i>
+              <i className="fa fa-user" style={{color:"#fff"}}></i>
               {" " + canteen_name}
             </a>
             <button
@@ -116,7 +116,7 @@ function AdminPanel() {
                 <li className="nav-item">
                   <a
                     className={
-                      isActive === "Dashboard" ? "nav-link active" : "nav-link"
+                      "nav-link active"
                     }
                     onClick={logout}
                   >
